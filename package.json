@@ -10,9 +10,15 @@
   },
   "dependencies": {
     "next": "15.2.4",
+<<<<<<< HEAD
     "next-auth": "^4.24.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
+=======
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0"
+>>>>>>> 19050ef024e9210c243ac8b436d5aac53a9a6d30
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
