@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
-import { FiAlignRight } from "react-icons/fi";
 import { useState } from "react";
+import { FiAlignRight } from "react-icons/fi";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,10 +36,16 @@ const Navbar = () => {
                 Contact
               </Link>
               <Link
-                href="/login"
+                href={"/login"}
                 className="px-3 border  py-2 rounded-lg hover:bg-gray-100"
               >
                 Login
+              </Link>
+              <Link
+                href={"/register"}
+                className="px-3 border  py-2 rounded-lg hover:bg-gray-100"
+              >
+                Register
               </Link>
             </div>
             <div className="lg:hidden">
