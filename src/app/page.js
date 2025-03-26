@@ -6,6 +6,7 @@ export default function Home() {
      <h1>Welcome to Smart Med Appointments</h1>
      <h1 className="text-5xl">Start Your Work</h1>
      <h1 className="text-5xl">You have to clone from Development Branch</h1>
+     <h1 className="text-5xl">llllll</h1>
     </div>
   );
 }
