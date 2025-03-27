@@ -1,10 +1,14 @@
 "use client";
+import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { FiAlignRight } from "react-icons/fi";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { data: session, status } = useSession();
+  console.log(session);
   return (
     <div>
       <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -35,18 +39,40 @@ const Navbar = () => {
               >
                 Contact
               </Link>
-              <Link
-                href={"/login"}
-                className="px-3 border  py-2 rounded-lg hover:bg-gray-100"
-              >
-                Login
-              </Link>
-              <Link
-                href={"/register"}
-                className="px-3 border  py-2 rounded-lg hover:bg-gray-100"
-              >
-                Register
-              </Link>
+
+              {status == "authenticated" ? (
+                <>
+                  <p>
+                    {/* <Image
+                      src={session?.user?.image}
+                      width={50}
+                      height={50}
+                      alt="user-logo"
+                    /> */}
+                  </p>
+                  <button
+                    onClick={() => signOut()}
+                    className=" border  rounded-lg hover:bg-gray-100"
+                  >
+                    Log Out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href={"/login"}
+                    className="px-3 border  py-2 rounded-lg hover:bg-gray-100"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    href={"/register"}
+                    className="px-3 border  py-2 rounded-lg hover:bg-gray-100"
+                  >
+                    Register
+                  </Link>
+                </>
+              )}
             </div>
             <div className="lg:hidden">
               <button
