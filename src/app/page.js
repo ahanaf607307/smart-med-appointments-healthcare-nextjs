@@ -4,10 +4,10 @@ import WhyChooseUs from "@/components/WhyChooseUs/WhyChooseUs";
 
 export default function Home() {
   return (
-    <div >
-     <Banner/>
-     <WhyChooseUs/>
-     <NewsLetter/>
+    <div>
+      <Banner />
+      <WhyChooseUs />
+      <NewsLetter />
     </div>
   );
 }
