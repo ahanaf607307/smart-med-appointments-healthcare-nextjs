@@ -1,8 +1,14 @@
-
+import Banner from "@/components/Banner/Banner";
+import NewsLetter from "@/components/NewsLetter/NewsLetter";
+import ReviewAndRating from "@/components/ReviewAndRating/ReviewAndRating";
+import WhyChooseUs from "@/components/WhyChooseUs/WhyChooseUs";
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
-    </div>
-  );
+    <div >
+     <Banner/>
+     <WhyChooseUs/>
+     <ReviewAndRating/>
+     <NewsLetter/>
+</div> )
 }

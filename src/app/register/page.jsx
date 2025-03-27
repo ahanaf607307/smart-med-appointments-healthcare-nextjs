@@ -4,10 +4,13 @@ import RegisterForm from "./components/RegisterForm";
 const Page = () => {
   return (
     <>
-      <h1 className="text-3xl font-bold text-center my-8">Register</h1>
-      <section className="container mx-auto grid grid-cols-12">
+      <section className="flex flex-col lg:flex-row bg-white shadow-2xl rounded-lg w-4/5 mx-auto my-8 max-w-4xl">
         {/* Left Section */}
-        <div className="col-span-12 md:col-span-6 flex justify-center items-center">
+        <div className="md:w-1/2 flex justify-center items-center my-4">
+          <RegisterForm />
+        </div>
+        {/* Right Section */}
+        <div className="md:w-1/2  flex justify-center items-center">
           <Image
             className="hidden md:block"
             src={"/assets/images/register/signUp.png"}
@@ -15,11 +18,6 @@ const Page = () => {
             height={500}
             alt={"Authentication Image"}
           />
-        </div>
-
-        {/* Right Section */}
-        <div className="col-span-12 md:col-span-6 flex justify-center items-center">
-          <RegisterForm />
         </div>
       </section>
     </>

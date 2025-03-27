@@ -3,6 +3,8 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { FaGithub } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa6";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -32,41 +34,68 @@ export default function LoginForm() {
       toast.error("FAILED to Log In");
     }
   };
+  const handleSocialLogin = async (providerName) => {
+    console.log('social login', providerName);
+    const result = await signIn(providerName, {redirect: false})
+    console.log(result);
+  };
   return (
-    <form onSubmit={handleSubmit} className="w-full  mx-auto space-y-8">
-      <label className="form-control w-full">
-        <div className="label w-full">
-          <span className="label-text  font-bold">Email</span>
+    <div>
+      <h2 className="text-2xl font-semibold text-center">Login your account</h2>
+      <form onSubmit={handleSubmit} className="w-full ">
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Email</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Type here"
+            className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400"
+            required
+          />
         </div>
-        <input
-          type="text"
-          name="email"
-          placeholder="Type here"
-          className="input input-bordered w-full"
-        />
-      </label>
-      <label className="form-control w-full">
-        <div className="label w-full">
-          <span className="label-text font-bold">Password</span>
+        <div className="mb-4 relative">
+          <label
+            htmlFor="password"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Password
+          </label>
+          <input
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400"
+          />
         </div>
-        <input
-          type="password"
-          name="password"
-          placeholder="Type here"
-          className="input input-bordered w-full"
-        />
-      </label>
-      <button className="w-full h-12 bg-blue-400 text-white font-bold">
-        Sign In
-      </button>
-      <p className="text-center">Or Sign In with</p>
+        <button className="btn w-full h-12 bg-blue-400 rounded-md text-white font-bold">
+          Login
+        </button>
+        </form>
+        <div className="mt-6 text-center">
+          <p className="text-sm text-gray-600">Or sign up with</p>
+          <div className="flex justify-center mt-2 space-x-4">
+            <button onClick={() => handleSocialLogin("google")} className="p-2 rounded-full bg-gray-100 text-2xl hover:bg-gray-200">
+              <FaGoogle />
+            </button>
+            <button onClick={() => handleSocialLogin("github")} className="p-2 rounded-full bg-gray-100 text-2xl hover:bg-gray-200">
+              <FaGithub />
+            </button>
+          </div>
+        </div>
 
-      <p className="text-sm text-gray-600">
-        Already registered?{" "}
-        <Link href={"/register"} className="text-blue-500 font-bold hover:underline">
-          Go to log in
-        </Link>
-      </p>
-    </form>
+        <p className="text-sm text-gray-600">
+          New here?{" "}
+          <Link
+            href={"/register"}
+            className="text-blue-500 font-bold hover:underline"
+          >
+            Create a New Account
+          </Link>
+        </p>
+      
+    </div>
   );
 }
