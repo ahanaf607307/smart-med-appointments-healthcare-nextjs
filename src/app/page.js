@@ -1,5 +1,6 @@
 import Banner from "@/components/Banner/Banner";
 import NewsLetter from "@/components/NewsLetter/NewsLetter";
+import ReviewAndRating from "@/components/ReviewAndRating/ReviewAndRating";
 import WhyChooseUs from "@/components/WhyChooseUs/WhyChooseUs";
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
     <div >
      <Banner/>
      <WhyChooseUs/>
+     <ReviewAndRating/>
      <NewsLetter/>
 </div> )
 }
