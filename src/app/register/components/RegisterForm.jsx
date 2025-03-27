@@ -1,9 +1,12 @@
 "use client";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FaGithub } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa6";
 
 export default function RegisterForm() {
+  const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -11,7 +14,23 @@ export default function RegisterForm() {
     const email = form.email.value;
     const password = form.password.value;
     // await registerUser({ name, email, password });
-    console.log(name, email, password);
+    try {
+      console.log(name, email, password);
+
+      router.push("/");
+    } catch (error) {
+      console.error("Registration failed:", error);
+    }
+  };
+  const handleSocialLogin = async (providerName) => {
+    console.log("social login", providerName);
+    const result = await signIn(providerName, { redirect: false });
+    console.log(result);
+    if (result?.ok) {
+      router.push("/");
+    } else {
+      console.error("Social login failed:", result);
+    }
   };
   return (
     <section>
@@ -83,10 +102,16 @@ export default function RegisterForm() {
       <div className="mt-6 text-center">
         <p className="text-sm text-gray-600">Or sign up with</p>
         <div className="flex justify-center mt-2 space-x-4">
-          <button className="p-2 rounded-full bg-gray-100 text-2xl hover:bg-gray-200">
+          <button
+            onClick={() => handleSocialLogin("google")}
+            className="p-2 rounded-full bg-gray-100 text-2xl hover:bg-gray-200"
+          >
             <FaGoogle />
           </button>
-          <button className="p-2 rounded-full bg-gray-100 text-2xl hover:bg-gray-200">
+          <button
+            onClick={() => handleSocialLogin("github")}
+            className="p-2 rounded-full bg-gray-100 text-2xl hover:bg-gray-200"
+          >
             <FaGithub />
           </button>
         </div>

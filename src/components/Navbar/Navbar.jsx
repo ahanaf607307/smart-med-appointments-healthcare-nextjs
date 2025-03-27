@@ -43,14 +43,19 @@ const Navbar = () => {
               {status == "authenticated" ? (
                 <>
                   <p>
-                    <Image
+                    {/* <Image
                       src={session?.user?.image}
                       width={50}
                       height={50}
                       alt="user-logo"
-                    />
+                    /> */}
                   </p>
-                  <p onClick={() => signOut()}>Log Out</p>
+                  <button
+                    onClick={() => signOut()}
+                    className=" border  rounded-lg hover:bg-gray-100"
+                  >
+                    Log Out
+                  </button>
                 </>
               ) : (
                 <>

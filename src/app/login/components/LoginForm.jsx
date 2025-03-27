@@ -34,6 +34,11 @@ export default function LoginForm() {
       toast.error("FAILED to Log In");
     }
   };
+  const handleSocialLogin = async (providerName) => {
+    console.log('social login', providerName);
+    const result = await signIn(providerName, {redirect: false})
+    console.log(result);
+  };
   return (
     <div>
       <h2 className="text-2xl font-semibold text-center">Login your account</h2>
@@ -72,10 +77,10 @@ export default function LoginForm() {
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">Or sign up with</p>
           <div className="flex justify-center mt-2 space-x-4">
-            <button className="p-2 rounded-full bg-gray-100 text-2xl hover:bg-gray-200">
+            <button onClick={() => handleSocialLogin("google")} className="p-2 rounded-full bg-gray-100 text-2xl hover:bg-gray-200">
               <FaGoogle />
             </button>
-            <button className="p-2 rounded-full bg-gray-100 text-2xl hover:bg-gray-200">
+            <button onClick={() => handleSocialLogin("github")} className="p-2 rounded-full bg-gray-100 text-2xl hover:bg-gray-200">
               <FaGithub />
             </button>
           </div>
