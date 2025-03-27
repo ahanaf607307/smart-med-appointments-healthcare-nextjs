@@ -19,7 +19,7 @@ export default function RegisterForm() {
 
       router.push("/");
     } catch (error) {
-      console.error("Registration failed:", error);
+      console.error("Registration failed : ", error);
     }
   };
   const handleSocialLogin = async (providerName) => {
