@@ -3,7 +3,7 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <div className='bg-[#192f47]'>
+        <div className='bg-[#192f47] text-white'>
             <div className='max-w-10/12 mx-auto'>
                 {/* company name and logo section  */}
                 <div className='flex md:flex-row flex-col md:justify-between items-center pt-5'>
