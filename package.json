@@ -15,7 +15,8 @@
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.2",
     "react-icons": "^5.5.0",
-    "react-multi-carousel": "^2.8.5"
+    "react-multi-carousel": "^2.8.5",
+    "react-rating": "^2.0.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
