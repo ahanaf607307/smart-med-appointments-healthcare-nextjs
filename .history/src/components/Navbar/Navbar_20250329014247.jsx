@@ -39,12 +39,6 @@ const Navbar = () => {
               >
                 Contact
               </Link>
-              <Link
-                href="/dashboard/user"
-                className="px-3 py-2 rounded-lg hover:bg-gray-100"
-              >
-                Dashboard
-              </Link>
 
               {status == "authenticated" ? (
                 <>

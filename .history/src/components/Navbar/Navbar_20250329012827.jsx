@@ -28,7 +28,7 @@ const Navbar = () => {
                 About
               </Link>
               <Link
-                href="/dashboard"
+                href="/services"
                 className="px-3 py-2 rounded-lg hover:bg-gray-100"
               >
                 Services
@@ -38,12 +38,6 @@ const Navbar = () => {
                 className="px-3 py-2 rounded-lg hover:bg-gray-100"
               >
                 Contact
-              </Link>
-              <Link
-                href="/dashboard/user"
-                className="px-3 py-2 rounded-lg hover:bg-gray-100"
-              >
-                Dashboard
               </Link>
 
               {status == "authenticated" ? (
@@ -99,7 +93,7 @@ const Navbar = () => {
               About
             </Link>
             <Link
-              href="/dashboard"
+              href="/services"
               className="block px-4 py-2 hover:bg-gray-100"
             >
               Services
