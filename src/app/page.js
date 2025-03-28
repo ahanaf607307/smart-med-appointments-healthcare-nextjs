@@ -10,5 +10,6 @@ export default function Home() {
      {/* <WhyChooseUs/>
      <ReviewAndRating/>
      <NewsLetter/> */}
+     <h2>hello</h2>
 </div> )
 }
