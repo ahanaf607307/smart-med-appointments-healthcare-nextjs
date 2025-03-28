@@ -2,6 +2,7 @@
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import { FaGithub } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa6";
 
@@ -14,13 +15,28 @@ export default function RegisterForm() {
     const email = form.email.value;
     const password = form.password.value;
     // await registerUser({ name, email, password });
+    toast("Submitting ....");
     try {
       console.log(name, email, password);
-
-      router.push("/");
+      const response = await signIn("credentials", {
+        email,
+        password,
+        callbackUrl: "/",
+        redirect: false,
+      });
+      if (response.ok) {
+        toast.success("Logged In successfully");
+        router.push("/");
+        form.reset();
+      } else {
+        toast.error("FAILED to Log In");
+      }
+      console.log({ email, password });
     } catch (error) {
-      console.error("Registration failed : ", error);
+      console.log(error);
+      toast.error("FAILED to Log In");
     }
+    
   };
   const handleSocialLogin = async (providerName) => {
     console.log("social login", providerName);
