@@ -1,11 +1,11 @@
 import React from 'react';
 
-const page = () => {
+const AddBlood = () => {
     return (
         <div>
-            dashboard...
+            add blood
         </div>
     );
 };
 
-export default page;
+export default AddBlood;

@@ -1,3 +1,5 @@
+import { Button } from "../ui/button";
+
 export default function NewsLetter() {
     return (
       <div className="flex justify-center items-center p-6">
@@ -10,11 +12,12 @@ export default function NewsLetter() {
             <input
               type="email"
               placeholder="Enter Your email"
-              className="border border-gray-300 p-3 w-2/3 rounded-l-md focus:outline-none"
+              className="border border-gray-300 px-3 py-2 w-2/3 rounded-l-md focus:outline-none"
             />
-            <button className="bg-blue-500 text-white px-6 py-3 rounded-r-md font-medium">
+            {/* <button className="bg-blue-500 text-white px-6 py-3 rounded-r-md font-medium">
               Submit
-            </button>
+            </button> */}
+            <Button variant='outline'  size='lg'> Submit </Button>
           </div>
         </div>
       </div>

@@ -9,10 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@radix-ui/react-slot": "^1.1.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.485.0",
+=======
+    "@radix-ui/react-label": "^2.1.2",
+    "@radix-ui/react-select": "^2.1.6",
+    "@radix-ui/react-slot": "^1.1.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.484.0",
+>>>>>>> 1c273bdbb0581f3932327fbca557b79ec5bab1c3
     "next": "15.2.4",
     "next-auth": "^4.24.11",
     "react": "^19.0.0",
@@ -21,7 +30,10 @@
     "react-icons": "^5.5.0",
     "react-multi-carousel": "^2.8.5",
     "react-rating": "^2.0.5",
+<<<<<<< HEAD
+=======
     "swiper": "^11.2.6",
+>>>>>>> 1c273bdbb0581f3932327fbca557b79ec5bab1c3
     "tailwind-merge": "^3.0.2",
     "tw-animate-css": "^1.2.5"
   },
