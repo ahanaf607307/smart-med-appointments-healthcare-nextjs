@@ -49,16 +49,16 @@ const Ourteam = () => {
                 itemClass="carousel-item-padding-40-px"
             >
                 <div
-                    class="group hover:saturate-100 saturate-50 transition-[filter] relative w-[248px] h-[318px] bg-sky-500 border-b-2 border-b-sky-500">
+                    classname="group hover:saturate-100 saturate-50 transition-[filter] relative w-[248px] h-[318px] bg-sky-500 border-b-2 border-b-sky-500">
 
                     <img
-                        class="group-hover:rounded-br-[100px] rounded-br-[0px] transition-[border-radius] h-[245px] items-center"
+                        classname="group-hover:rounded-br-[100px] rounded-br-[0px] transition-[border-radius] h-[245px] items-center"
                         src="https://clinicmaster.wprdx.com/medical/wp-content/uploads/2024/08/team4.png" />
-                    <p class="m-[5px] text-xl font-semibold">Rihana Roy</p>
-                    <p class="m-[5px] text-gray-600 text-base">Gynecology</p>
+                    <p classname="m-[5px] text-xl font-semibold">Rihana Roy</p>
+                    <p classname="m-[5px] text-gray-600 text-base">Gynecology</p>
 
                     <svg
-                        class="group-hover:opacity-100 opacity-0 transition-opacity absolute right-[10px] bottom-[10px] text-blue-500"
+                        classname="group-hover:opacity-100 opacity-0 transition-opacity absolute right-[10px] bottom-[10px] text-blue-500"
                         xmlns="http://www.w3.org/2000/svg"
                         width="45"
                         height="64"
@@ -70,16 +70,16 @@ const Ourteam = () => {
 
                 </div>
                 <div
-                    class="group hover:saturate-100 saturate-50 transition-[filter] relative w-[248px] h-[318px] bg-sky-500 border-b-2 border-b-sky-500">
+                    classname="group hover:saturate-100 saturate-50 transition-[filter] relative w-[248px] h-[318px] bg-sky-500 border-b-2 border-b-sky-500">
 
                     <img
-                        class="group-hover:rounded-br-[100px] rounded-br-[0px] transition-[border-radius] h-[245px] items-center"
+                        classname="group-hover:rounded-br-[100px] rounded-br-[0px] transition-[border-radius] h-[245px] items-center"
                         src="https://clinicmaster.wprdx.com/medical/wp-content/uploads/2024/08/team4.png" />
-                    <p class="m-[5px] text-xl font-semibold">Rihana Roy</p>
-                    <p class="m-[5px] text-gray-600 text-base">Gynecology</p>
+                    <p classname="m-[5px] text-xl font-semibold">Rihana Roy</p>
+                    <p classname="m-[5px] text-gray-600 text-base">Gynecology</p>
 
                     <svg
-                        class="group-hover:opacity-100 opacity-0 transition-opacity absolute right-[10px] bottom-[10px] text-blue-500"
+                        classname="group-hover:opacity-100 opacity-0 transition-opacity absolute right-[10px] bottom-[10px] text-blue-500"
                         xmlns="http://www.w3.org/2000/svg"
                         width="45"
                         height="64"
@@ -91,16 +91,16 @@ const Ourteam = () => {
 
                 </div>
                 <div
-                    class="group hover:saturate-100 saturate-50 transition-[filter] relative w-[248px] h-[318px] bg-sky-500 border-b-2 border-b-sky-500">
+                    classname="group hover:saturate-100 saturate-50 transition-[filter] relative w-[248px] h-[318px] bg-sky-500 border-b-2 border-b-sky-500">
 
                     <img
-                        class="group-hover:rounded-br-[100px] rounded-br-[0px] transition-[border-radius] h-[245px] items-center"
+                        classname="group-hover:rounded-br-[100px] rounded-br-[0px] transition-[border-radius] h-[245px] items-center"
                         src="https://clinicmaster.wprdx.com/medical/wp-content/uploads/2024/08/team4.png" />
-                    <p class="m-[5px] text-xl font-semibold">Rihana Roy</p>
-                    <p class="m-[5px] text-gray-600 text-base">Gynecology</p>
+                    <p classname="m-[5px] text-xl font-semibold">Rihana Roy</p>
+                    <p classname="m-[5px] text-gray-600 text-base">Gynecology</p>
 
                     <svg
-                        class="group-hover:opacity-100 opacity-0 transition-opacity absolute right-[10px] bottom-[10px] text-blue-500"
+                        classname="group-hover:opacity-100 opacity-0 transition-opacity absolute right-[10px] bottom-[10px] text-blue-500"
                         xmlns="http://www.w3.org/2000/svg"
                         width="45"
                         height="64"
@@ -112,16 +112,16 @@ const Ourteam = () => {
 
                 </div>
                 <div
-                    class="group hover:saturate-100 saturate-50 transition-[filter] relative w-[248px] h-[318px] bg-sky-500 border-b-2 border-b-sky-500">
+                    classname="group hover:saturate-100 saturate-50 transition-[filter] relative w-[248px] h-[318px] bg-sky-500 border-b-2 border-b-sky-500">
 
                     <img
-                        class="group-hover:rounded-br-[100px] rounded-br-[0px] transition-[border-radius] h-[245px] items-center"
+                        classname="group-hover:rounded-br-[100px] rounded-br-[0px] transition-[border-radius] h-[245px] items-center"
                         src="https://clinicmaster.wprdx.com/medical/wp-content/uploads/2024/08/team4.png" />
-                    <p class="m-[5px] text-xl font-semibold">Rihana Roy</p>
-                    <p class="m-[5px] text-gray-600 text-base">Gynecology</p>
+                    <p classname="m-[5px] text-xl font-semibold">Rihana Roy</p>
+                    <p classname="m-[5px] text-gray-600 text-base">Gynecology</p>
 
                     <svg
-                        class="group-hover:opacity-100 opacity-0 transition-opacity absolute right-[10px] bottom-[10px] text-blue-500"
+                        classname="group-hover:opacity-100 opacity-0 transition-opacity absolute right-[10px] bottom-[10px] text-blue-500"
                         xmlns="http://www.w3.org/2000/svg"
                         width="45"
                         height="64"
@@ -133,16 +133,16 @@ const Ourteam = () => {
 
                 </div>
                 <div
-                    class="group hover:saturate-100 saturate-50 transition-[filter] relative w-[248px] h-[318px] bg-sky-500 border-b-2 border-b-sky-500">
+                    classname="group hover:saturate-100 saturate-50 transition-[filter] relative w-[248px] h-[318px] bg-sky-500 border-b-2 border-b-sky-500">
 
                     <img
-                        class="group-hover:rounded-br-[100px] rounded-br-[0px] transition-[border-radius] h-[245px] items-center"
+                        classname="group-hover:rounded-br-[100px] rounded-br-[0px] transition-[border-radius] h-[245px] items-center"
                         src="https://clinicmaster.wprdx.com/medical/wp-content/uploads/2024/08/team4.png" />
-                    <p class="m-[5px] text-xl font-semibold">Rihana Roy</p>
-                    <p class="m-[5px] text-gray-600 text-base">Gynecology</p>
+                    <p classname="m-[5px] text-xl font-semibold">Rihana Roy</p>
+                    <p classname="m-[5px] text-gray-600 text-base">Gynecology</p>
 
                     <svg
-                        class="group-hover:opacity-100 opacity-0 transition-opacity absolute right-[10px] bottom-[10px] text-blue-500"
+                        classname="group-hover:opacity-100 opacity-0 transition-opacity absolute right-[10px] bottom-[10px] text-blue-500"
                         xmlns="http://www.w3.org/2000/svg"
                         width="45"
                         height="64"
