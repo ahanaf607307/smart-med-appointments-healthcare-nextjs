@@ -6,9 +6,9 @@ import WhyChooseUs from "@/components/WhyChooseUs/WhyChooseUs";
 export default function Home() {
   return (
     <div >
-     <Banner/>
-     <WhyChooseUs/>
+     {/* <Banner/> */}
+     {/* <WhyChooseUs/>
      <ReviewAndRating/>
-     <NewsLetter/>
+     <NewsLetter/> */}
 </div> )
 }
