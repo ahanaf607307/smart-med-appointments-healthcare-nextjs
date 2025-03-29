@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { FaGithub } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa6";
+import { registerUser } from "../../actions/auth/registerUser";
 
 export default function RegisterForm() {
   const router = useRouter();
