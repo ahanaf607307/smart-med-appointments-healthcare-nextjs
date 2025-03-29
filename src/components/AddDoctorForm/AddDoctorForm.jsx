@@ -1,6 +1,4 @@
 "use client"
-
-import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -9,28 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea"
 
 function AddDoctorForm() {
-  const [formData, setFormData] = useState({
-    name: "",
-    category: "",
-    degree: "",
-    imageLink: "",
-    location: "",
-  })
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleSelectChange = (value) => {
-    setFormData((prev) => ({ ...prev, category: value }))
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log("Form submitted:", formData)
-   
-  }
 
   return (
     <Card className="w-full max-w-2xl mx-auto">
@@ -38,7 +15,7 @@ function AddDoctorForm() {
         <CardTitle className="text-2xl">Doctor Information</CardTitle>
         <CardDescription>Enter the doctor's details to add them to the system.</CardDescription>
       </CardHeader>
-      <form onSubmit={handleSubmit}>
+      <form >
         <CardContent className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="name">Doctor Name</Label>
@@ -46,15 +23,15 @@ function AddDoctorForm() {
               id="name"
               name="name"
               placeholder="Dr. Jane Smith"
-              value={formData.name}
-              onChange={handleChange}
+              
+
               required
             />
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="category">Doctor Category</Label>
-            <Select onValueChange={handleSelectChange} required>
+            <Select required>
               <SelectTrigger id="category">
                 <SelectValue placeholder="Select a specialty" />
               </SelectTrigger>
@@ -77,8 +54,7 @@ function AddDoctorForm() {
               id="degree"
               name="degree"
               placeholder="MD, PhD, MBBS"
-              value={formData.degree}
-              onChange={handleChange}
+
               required
             />
           </div>
@@ -90,8 +66,8 @@ function AddDoctorForm() {
               name="imageLink"
               type="url"
               placeholder="https://example.com/doctor-image.jpg"
-              value={formData.imageLink}
-              onChange={handleChange}
+            
+
               required
             />
             <p className="text-sm text-muted-foreground">Enter a valid URL for the doctor's profile image</p>
@@ -103,8 +79,8 @@ function AddDoctorForm() {
               id="location"
               name="location"
               placeholder="123 Medical Center Dr, City, State, ZIP"
-              value={formData.location}
-              onChange={handleChange}
+              
+
               required
             />
           </div>

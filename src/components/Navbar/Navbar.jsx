@@ -40,7 +40,13 @@ const Navbar = () => {
                 Contact
               </Link>
               <Link
-                href="/dashboard/user"
+                href="/blood"
+                className="px-3 py-2 rounded-lg hover:bg-gray-100"
+              >
+                Blood
+              </Link>
+              <Link
+                href="/dashboard/user/addBlood"
                 className="px-3 py-2 rounded-lg hover:bg-gray-100"
               >
                 Dashboard
