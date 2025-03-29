@@ -59,6 +59,7 @@ const AddBloodForm = () => {
                 additionalInfo: data.additionalInfo,
                 consent: isConsentChecked,
                 postedAt: time.getTime(),
+                isDonate: false,
             };
             console.table(newBloodData);
 
