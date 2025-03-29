@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { FaGithub } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa6";
-import { registerUser } from "../../actions/auth/registerUser";
 
 export default function RegisterForm() {
   const router = useRouter();
@@ -37,7 +36,7 @@ export default function RegisterForm() {
       console.log(error);
       toast.error("FAILED to Log In");
     }
-    
+
   };
   const handleSocialLogin = async (providerName) => {
     console.log("social login", providerName);
