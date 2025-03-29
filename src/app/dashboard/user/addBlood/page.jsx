@@ -16,17 +16,23 @@ import { useForm } from "react-hook-form"
       } = useForm()
       const onSubmit= (data) => {
 
-        const category = data.category
-        const degree = data.degree
-        const imageLink = data.imageLink
-        const location = data.location
-        const name = data.name
+        const patientName = data.patientName
+        const bloodGroup = data.bloodGroup
+        const unitsNeeded = data.unitsNeeded
+        const hospitalName = data.hospitalName
+        const postedDate = data.postedDate
+        const neededDate = data.neededDate
+        const yourName = data.yourName
+        const yourPhoneNumber = data.yourPhoneNumber
         const doctorInfo = {
-            category,
-            degree,
-            imageLink,
-            location,
-            name,
+            patientName,
+            bloodGroup,
+            unitsNeeded,
+            hospitalName,
+            postedDate,
+            neededDate,
+            yourName,
+            yourPhoneNumber,
         }
         console.log(doctorInfo)
       }
@@ -34,76 +40,98 @@ import { useForm } from "react-hook-form"
   return (
     <Card className="w-full max-w-2xl mx-auto">
       <CardHeader>
-        <CardTitle className="text-2xl">Doctor Information</CardTitle>
-        <CardDescription>Enter the doctor's details to add them to the system.</CardDescription>
+        <CardTitle className="text-2xl">Add Blood</CardTitle>
+        <CardDescription>Enter Your Blood Details</CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit(onSubmit)}>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="name">Doctor Name</Label>
+            <Label htmlFor="patientName">Patient Name</Label>
             <Input
               id="name"
-              name="name"
-              placeholder="Dr. Jane Smith"
-              {...register("name")}
+              name="patientName"
+              placeholder="Write Your Patient Name"
+              {...register("patientName")}
+
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="bloodGroup">Blood Group</Label>
+            <Input
+              id="name"
+              name="bloodGroup"
+              placeholder="Write Your Blood Group"
+              {...register("bloodGroup")}
+
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="unitsNeeded">Units Needed</Label>
+            <Input
+              id="name"
+              name="unitsNeeded"
+              placeholder="How Many Units Needed"
+              {...register("unitsNeeded")}
+
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="HospitalName">Hospital Name</Label>
+            <Input
+              id="name"
+              name="hospitalName"
+              placeholder="Hospital Name"
+              {...register("hospitalName")}
+
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="date">Posted Date</Label>
+            <Input
+              id="name"
+              name="postedDate"
+              placeholder="Posted Date"
+              {...register("postedDate")}
+
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="date">Needed By</Label>
+            <Input
+              id="name"
+              name="neededDate"
+              placeholder="Needed By Date"
+              {...register("neededDate")}
 
               required
             />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="category">Doctor Category</Label>
-            <Select
-          onValueChange={(value) => setValue("category", value)} >
-              <SelectTrigger id="category">
-                <SelectValue placeholder="Select a specialty" />
-              </SelectTrigger>
-              <SelectContent >
-                <SelectItem value="cardiology">Cardiology</SelectItem>
-                <SelectItem value="dermatology">Dermatology</SelectItem>
-                <SelectItem value="neurology">Neurology</SelectItem>
-                <SelectItem value="orthopedics">Orthopedics</SelectItem>
-                <SelectItem value="pediatrics">Pediatrics</SelectItem>
-                <SelectItem value="psychiatry">Psychiatry</SelectItem>
-                <SelectItem value="oncology">Oncology</SelectItem>
-                <SelectItem value="general">General Practice</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+       
 
           <div className="space-y-2">
-            <Label htmlFor="degree">Doctor Degree</Label>
+            <Label htmlFor="Your Name">Your Name</Label>
             <Input
               id="degree"
-              name="degree"
-              placeholder="MD, PhD, MBBS"
-              {...register("degree")}
+              name="yourName"
+              placeholder="Write Blood Owner Name"
+              {...register("yourName")}
 
               required
             />
           </div>
-
           <div className="space-y-2">
-            <Label htmlFor="imageLink">Doctor Image Link</Label>
+            <Label htmlFor="yourPhoneNumber">Your Phone Number</Label>
             <Input
-              id="imageLink"
-              name="imageLink"
-              type="url"
-              placeholder="https://example.com/doctor-image.jpg"
-              {...register("imageLink")}
-
-              required
-            />
-            <p className="text-sm text-muted-foreground">Enter a valid URL for the doctor's profile image</p>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="location">Doctor Location</Label>
-            <Textarea
-              id="location"
-              name="location"
-              placeholder="123 Medical Center Dr, City, State, ZIP"
-              {...register("location")}
+              id="degree"
+              name="yourPhoneNumber"
+              placeholder="Your Phone Number"
+              {...register("yourPhoneNumber")}
 
               required
             />
@@ -111,7 +139,7 @@ import { useForm } from "react-hook-form"
         </CardContent>
         <CardFooter >
           <Button variant='outline' type="submit" className="w-full cursor-pointer mt-5 bg-cyan-400">
-            Save Doctor Information
+            Add
           </Button>
         </CardFooter>
       </form>

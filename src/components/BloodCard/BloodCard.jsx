@@ -94,7 +94,7 @@ function BloodCard() {
   };
 
   return (
-    <Card className=" w-sm  border-2 border-red-200 shadow-lg">
+    <Card className=" max-w-sm  border-2 border-red-200 shadow-lg ">
       <CardHeader className="pb-2">
         <div className="flex justify-between items-start">
           <div>
