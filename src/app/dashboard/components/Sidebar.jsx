@@ -7,6 +7,7 @@ export default function Sidebar({ isMobile, sidebarOpen, user, handleLogout }) {
     const navItems = [
         { icon: <LayoutDashboard className="h-5 w-5" />, label: "Dashboard", href: "/dashboard" },
         { icon: <Users className="h-5 w-5" />, label: "Add Blood", href: "/dashboard/user/addBlood" },
+        { icon: <Users className="h-5 w-5" />, label: "Add Doctor", href: "/dashboard/adddoctor" },
         { icon: <Calendar className="h-5 w-5" />, label: "Appointments", href: "/dashboard/appointments" },
         { icon: <FileText className="h-5 w-5" />, label: "Medical Records", href: "/dashboard/records" },
         { icon: <Settings className="h-5 w-5" />, label: "Settings", href: "/dashboard/settings" },
