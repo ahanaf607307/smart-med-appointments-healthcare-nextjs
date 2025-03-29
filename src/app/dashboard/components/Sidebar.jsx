@@ -6,7 +6,7 @@ import { LayoutDashboard, Users, Calendar, FileText, Settings, LogOut } from "lu
 export default function Sidebar({ isMobile, sidebarOpen, user, handleLogout }) {
     const navItems = [
         { icon: <LayoutDashboard className="h-5 w-5" />, label: "Dashboard", href: "/dashboard" },
-        { icon: <Users className="h-5 w-5" />, label: "Patients", href: "/dashboard/patients" },
+        { icon: <Users className="h-5 w-5" />, label: "Add Blood", href: "/dashboard/user/addBlood" },
         { icon: <Calendar className="h-5 w-5" />, label: "Appointments", href: "/dashboard/appointments" },
         { icon: <FileText className="h-5 w-5" />, label: "Medical Records", href: "/dashboard/records" },
         { icon: <Settings className="h-5 w-5" />, label: "Settings", href: "/dashboard/settings" },
@@ -20,7 +20,7 @@ export default function Sidebar({ isMobile, sidebarOpen, user, handleLogout }) {
             <div className="flex h-full flex-col">
                 {/* Sidebar header */}
                 <div className="flex h-16 items-center justify-center border-b px-4">
-                    <h1 className="text-xl font-bold text-primary">Medical Admin</h1>
+                    <Link href='/' className="text-xl font-bold text-primary">Medical Admin</Link>
                 </div>
 
                 {/* Sidebar content */}
