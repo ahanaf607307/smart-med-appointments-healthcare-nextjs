@@ -49,6 +49,12 @@ const Navbar = () => {
                 Blood
               </Link>
               <Link
+                href="/alldoctor"
+                className="px-3 py-2 rounded-lg hover:bg-gray-100"
+              >
+                Doctors
+              </Link>
+              <Link
                 href="/dashboard/user/addBlood"
                 className="px-3 py-2 rounded-lg hover:bg-gray-100"
               >
