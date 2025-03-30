@@ -76,7 +76,7 @@ export default function CompletedPatientsPage() {
   })
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 w-11/12 mx-auto">
       <div className="flex flex-col gap-2">
         <h1 className="text-3xl font-bold tracking-tight">Completed Patients</h1>
         <p className="text-muted-foreground">View patients who have completed their treatment plans.</p>

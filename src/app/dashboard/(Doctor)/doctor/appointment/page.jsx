@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 // Sample pending patients data
 const initialPendingPatients = [
   {
-    id: 101, // Using different ID range to avoid conflicts
+    id: 101, 
     name: "Olivia Chen",
     image: "/placeholder.svg?height=40&width=40",
     initials: "OC",
@@ -122,7 +122,7 @@ export default function AppointmentsPage() {
         age: acceptedPatient.age,
         gender: acceptedPatient.gender,
         condition: acceptedPatient.condition,
-        completedDate: new Date().toISOString().split("T")[0], // Today's date
+        completedDate: new Date().toISOString().split("T")[0], 
         treatmentDuration: "New", // Initial value
         outcome: "Improved", // Default outcome
       };
@@ -140,7 +140,7 @@ export default function AppointmentsPage() {
       }
 
       // Add the new completed patient
-      completedPatients.unshift(completedPatient); // Add to beginning of array
+      completedPatients.unshift(completedPatient); 
 
       // Save back to localStorage
       localStorage.setItem(
@@ -167,7 +167,7 @@ export default function AppointmentsPage() {
         text: `You've accepted the appointment for ${acceptedPatient.name}`,
       });
 
-      // Navigate to completed route after a short delay
+      
       setTimeout(() => {
         router.push("/dashboard/doctor/completeAppointment");
       }, 1500);
@@ -191,20 +191,20 @@ export default function AppointmentsPage() {
       JSON.stringify(updatedPendingPatients)
     );
 
-    // Show status message
+   
     setStatusMessage({
       type: "error",
       text: `You've rejected the appointment for ${rejectedPatient?.name}`,
     });
 
-    // Clear status message after 3 seconds
+    
     setTimeout(() => {
       setStatusMessage(null);
     }, 3000);
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 w-11/12 mx-auto">
       <div className="flex flex-col gap-2">
         <h1 className="text-3xl font-bold tracking-tight">Appointments</h1>
         <p className="text-muted-foreground">
