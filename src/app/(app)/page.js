@@ -15,7 +15,7 @@ export default function Home() {
 
       {/* Why Choose Us */}
       <WhyChooseUs />
-      <ReviewAndRating />
+
       <Stat></Stat>
       <OurService></OurService>
 
@@ -23,6 +23,7 @@ export default function Home() {
       <TopRatedDoctors />
       <Ourteam></Ourteam>
       <NewsLetter />
+      <ReviewAndRating />
     </div>
   );
 }
