@@ -12,6 +12,9 @@ export default function Sidebar({ isMobile, sidebarOpen, user, handleLogout }) {
         { icon: <Calendar className="h-5 w-5" />, label: "Appointments", href: "/dashboard/manageUser" },
         { icon: <FileText className="h-5 w-5" />, label: "Medical Records", href: "/dashboard/records" },
         { icon: <Settings className="h-5 w-5" />, label: "Settings", href: "/dashboard/settings" },
+        { icon: <Calendar className="h-5 w-5" />, label: "Appointment", href: "/dashboard/doctor/appointment" },
+        { icon: <Calendar className="h-5 w-5" />, label: "Complete", href: "/dashboard/doctor/completeAppointment" },
+        { icon: <Settings className="h-5 w-5" />, label: "Complete Appointment", href: "/dashboard/settings" },
     ]
 
     return (
