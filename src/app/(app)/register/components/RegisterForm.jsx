@@ -36,7 +36,7 @@ export default function RegisterForm() {
       console.log(error);
       toast.error("FAILED to Log In");
     }
-    
+
   };
   const handleSocialLogin = async (providerName) => {
     console.log("social login", providerName);
