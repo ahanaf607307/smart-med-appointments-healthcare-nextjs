@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export const createDBConn = () => {
+export const createDBConn = async () => {
   try {
     const DB_USERNAME = process.env.DB_USERNAME;
     const DB_PASSWORD = process.env.DB_PASSWORD;
@@ -9,7 +9,7 @@ export const createDBConn = () => {
       DB_USERNAME
     ).replace("<db_password>", DB_PASSWORD);
 
-    mongoose.connect(MONGO_URI);
+    await mongoose.connect(MONGO_URI);
   } catch (err) {
     console.log(err);
   }
