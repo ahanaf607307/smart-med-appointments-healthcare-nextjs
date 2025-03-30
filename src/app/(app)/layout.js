@@ -31,7 +31,10 @@ export default function RootLayout({ children }) {
         >
           {/* <TanstackProvider> */}
             <Navbar />
+            <div className="min-h-screen">
+
             {children}
+            </div>
             <Toaster />
             <Footer></Footer>
             {/* <ReactQueryDevtools initialIsOpen={false} /> */}
