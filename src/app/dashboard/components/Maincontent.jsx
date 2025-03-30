@@ -23,7 +23,7 @@ export default function MainContent({ children, user, handleLogout }) {
             </header>
 
             {/* Main content body */}
-            <main className="flex-1 overflow-auto bg-gray-100">{children}</main>
+            <main className="flex-1 overflow-auto  bg-gray-100">{children}</main>
         </div>
     )
 }
