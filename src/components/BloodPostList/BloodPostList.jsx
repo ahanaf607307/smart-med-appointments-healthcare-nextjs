@@ -81,6 +81,8 @@ const BloodPostList = () => {
     const [sortedRequests, setSortedRequested] = useState(mockBloodRequests);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedPost, setSelectedPost] = useState(null);
+    const [open, setOpen] = useState(false);
+    const [displayData, setDisplayData] = useState([mockBloodRequests]);
 
     const { data, isLoading, isError, refetch } = useQuery({
         queryKey: ['bloodPosts'],
@@ -103,12 +105,22 @@ const BloodPostList = () => {
         )
     })
 
+    // setDisplayData(requests.filter((request) => {
+    //     const searchLower = searchQuery.toLowerCase()
+    //     return (
+    //         request.patientName.toLowerCase().includes(searchLower) ||
+    //         request.hospital.toLowerCase().includes(searchLower) ||
+    //         request.location.toLowerCase().includes(searchLower) ||
+    //         request.bloodType.toLowerCase().includes(searchLower)
+    //     )
+    // }))
+
     // Sort by urgency and then by posted time
-    // const sortedRequests = [...filteredRequests].sort((a, b) => {
+    // filteredRequests = [...filteredRequests].sort((a, b) => {
     //     const urgencyOrder = { immediate: 0, urgent: 1, high: 2 }
     //     const urgencyComparison =
-    //         urgencyOrder[a.urgencyLevel as keyof typeof urgencyOrder] -
-    //         urgencyOrder[b.urgencyLevel as keyof typeof urgencyOrder]
+    //         urgencyOrder[a.urgencyLevel] -
+    //         urgencyOrder[b.urgencyLevel]
 
     //     if (urgencyComparison !== 0) return urgencyComparison
 
@@ -118,7 +130,8 @@ const BloodPostList = () => {
 
     const handleDonateBlood = (post) => {
         setSelectedPost(post)
-        setIsModalOpen(true)
+        // setIsModalOpen(true)
+        setOpen(true);
     }
 
     return (
@@ -140,13 +153,26 @@ const BloodPostList = () => {
                 </Button>
             </div>
 
-            {sortedRequests.length === 0 ? (
+            {/* {sortedRequests.length === 0 ? (
                 <div className="text-center py-10 border rounded-lg bg-gray-50">
                     <p className="text-gray-500">No blood requests match your search criteria</p>
                 </div>
             ) : (
                 <div className="space-y-4">
                     {sortedRequests.map((request) => (
+                        <BloodPostCard key={request.id} bloodPost={request}
+                            handleDonateBlood={handleDonateBlood}
+                        />
+                    ))}
+                </div>
+            )} */}
+            {filteredRequests.length === 0 ? (
+                <div className="text-center py-10 border rounded-lg bg-gray-50">
+                    <p className="text-gray-500">No blood requests match your search criteria</p>
+                </div>
+            ) : (
+                <div className="space-y-4">
+                    {filteredRequests.map((request) => (
                         <BloodPostCard key={request.id} bloodPost={request}
                             handleDonateBlood={handleDonateBlood}
                         />
@@ -163,8 +189,11 @@ const BloodPostList = () => {
             </div>
 
             <BloodDonateForm
-                open={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
+                // open={isModalOpen}
+                open={open}
+                // onClose={() => setIsModalOpen(false)}
+                // onClose={() => setOpen(false)}
+                setOpen={setOpen}
                 post={selectedPost}
             />
 

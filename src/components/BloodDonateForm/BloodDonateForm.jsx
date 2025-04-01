@@ -1,17 +1,19 @@
-import { Button } from "@/components/ui/button"
+
+
+import { Button } from "@/components/ui/button";
 import {
     Dialog,
     DialogContent,
-    DialogFooter,
-    DialogTrigger
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { useForm } from "react-hook-form"
-import toast from "react-hot-toast"
+    DialogFooter
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 
-const BloodDonateForm = ({ open, onClose, post }) => {
+// const BloodDonateForm = ({ open, onClose, post, open, open }) => {
+const BloodDonateForm = ({ open, post, setOpen }) => {
 
     const {
         register,
@@ -30,8 +32,8 @@ const BloodDonateForm = ({ open, onClose, post }) => {
                 bloodPostId: post.id,
             }
             console.table(donarInfo);
-            // data.donarName = "";
-            onClose();
+            // onClose();
+            setOpen(false)
             reset();
         } catch (err) {
             toast.error(err.message);
@@ -39,17 +41,16 @@ const BloodDonateForm = ({ open, onClose, post }) => {
     }
 
     return (
-        <Dialog open={open}>
-            {/* <DialogTrigger asChild>
-                <Button variant="outline">Blood Donar Modal</Button>
-            </DialogTrigger> */}
+        // New Modal
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogContent className="sm:max-w-[425px]">
                 {/* <DialogHeader>
-                    <DialogTitle>Edit profile</DialogTitle>
+                    <DialogTitle className="text-xl font-bold text-red-600">Blood Donation Registration</DialogTitle>
                     <DialogDescription>
-                        Make changes to your profile here. Click save when you're done.
+                        Please fill in your details to register for blood donation. We'll contact you with further information.
                     </DialogDescription>
                 </DialogHeader> */}
+
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div className="grid gap-4 py-4">
                         <div className="flex flex-col items-start gap-2">
