@@ -21,6 +21,9 @@ const Navbar = () => {
               <Link href="/" className="px-3 py-2 rounded-lg hover:bg-gray-100">
                 Home
               </Link>
+              <Link href="/all-blood-post" className="px-3 py-2 rounded-lg hover:bg-gray-100">
+                All Blood Post
+              </Link>
               <Link
                 href="/about"
                 className="px-3 py-2 rounded-lg hover:bg-gray-100"
@@ -28,7 +31,7 @@ const Navbar = () => {
                 About
               </Link>
               <Link
-                href="/services"
+                href="/dashboard"
                 className="px-3 py-2 rounded-lg hover:bg-gray-100"
               >
                 Services
@@ -38,6 +41,18 @@ const Navbar = () => {
                 className="px-3 py-2 rounded-lg hover:bg-gray-100"
               >
                 Contact
+              </Link>
+              <Link
+                href="/ambulance"
+                className="px-3 py-2 rounded-lg hover:bg-gray-100"
+              >
+                Ambulance Service
+              </Link>
+              <Link
+                href="/dashboard/user/add-blood-post"
+                className="px-3 py-2 rounded-lg hover:bg-gray-100"
+              >
+                Dashboard
               </Link>
 
               {status == "authenticated" ? (
@@ -93,7 +108,7 @@ const Navbar = () => {
               About
             </Link>
             <Link
-              href="/services"
+              href="/dashboard"
               className="block px-4 py-2 hover:bg-gray-100"
             >
               Services
