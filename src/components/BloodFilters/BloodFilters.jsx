@@ -83,28 +83,6 @@ const BloodFilters = () => {
                 </Collapsible>
                 {/* End of Emergency Level */}
 
-                {/* Location */}
-                {/* <Collapsible open={openLocation} onOpenChange={setOpenLocation}>
-                    <CollapsibleTrigger asChild>
-                        <Button variant="ghost" className="flex w-full justify-between p-0 font-medium">
-                            Location
-                            <ChevronDown className={`h-4 w-4 transition-transform ${openLocation ? "rotate-180" : ""}`} />
-                        </Button>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent className="pt-2 pb-1">
-                        <div className="space-y-3">
-                            {["Downtown", "Westside", "Eastside", "Northside", "Southside"].map((location) => (
-                                <div key={location} className="flex items-center space-x-2">
-                                    <Checkbox id={`location-${location}`} />
-                                    <Label htmlFor={`location-${location}`} className="text-sm font-normal cursor-pointer">
-                                        {location}
-                                    </Label>
-                                </div>
-                            ))}
-                        </div>
-                    </CollapsibleContent>
-                </Collapsible> */}
-
                 <Button className="w-full mt-4" variant="outline">
                     <Check className="mr-2 h-4 w-4" /> Apply Filters
                 </Button>
