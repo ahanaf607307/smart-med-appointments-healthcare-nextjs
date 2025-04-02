@@ -8,12 +8,27 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 
 // const BloodDonateForm = ({ open, onClose, post, open, open }) => {
 const BloodDonateForm = ({ open, post, setOpen }) => {
+    console.log(post);
+
+    const { mutateAsync } = useMutation({
+        mutationFn: async (donarInfo) => {
+            // console.log(donarInfo);
+            await axios.post(`/api/......`, donarInfo)
+        },
+        onSuccess: () => {
+            toast.success("Blood Donate Successfully!!");
+        },
+        onError: (error) => {
+            toast.error(error.response.data.msg);
+        }
+    })
 
     const {
         register,
@@ -29,11 +44,12 @@ const BloodDonateForm = ({ open, post, setOpen }) => {
                 donarName: data.donarName,
                 donarEmail: data.donarEmail,
                 donarContact: data.donarContact,
-                bloodPostId: post.id,
+                bloodPostId: post._id,
             }
-            console.table(donarInfo);
+            // console.table(donarInfo);
             // onClose();
             setOpen(false)
+            await mutateAsync(donarInfo);
             reset();
         } catch (err) {
             toast.error(err.message);
