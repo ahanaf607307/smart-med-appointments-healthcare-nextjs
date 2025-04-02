@@ -13,6 +13,22 @@ export default function LoginForm() {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+
+    //Fetching corresponding user
+    const res = await fetch("/api/getUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    const data = await res.json();
+    console.log("Response is: ", data);
+
     toast("Submitting ....");
     try {
       const response = await signIn("credentials", {
@@ -36,8 +52,8 @@ export default function LoginForm() {
     }
   };
   const handleSocialLogin = async (providerName) => {
-    console.log('social login', providerName);
-    const result = await signIn(providerName, {redirect: false})
+    console.log("social login", providerName);
+    const result = await signIn(providerName, { redirect: false });
     console.log(result);
   };
   return (
@@ -74,29 +90,34 @@ export default function LoginForm() {
         <button className="btn w-full h-12 bg-blue-400 rounded-md text-white font-bold">
           Login
         </button>
-        </form>
-        <div className="mt-6 text-center">
-          <p className="text-sm text-gray-600">Or sign up with</p>
-          <div className="flex justify-center mt-2 space-x-4">
-            <button onClick={() => handleSocialLogin("google")} className="p-2 rounded-full bg-gray-100 text-2xl hover:bg-gray-200">
-              <FaGoogle />
-            </button>
-            <button onClick={() => handleSocialLogin("github")} className="p-2 rounded-full bg-gray-100 text-2xl hover:bg-gray-200">
-              <FaGithub />
-            </button>
-          </div>
-        </div>
-
-        <p className="text-sm text-gray-600">
-          New here?{" "}
-          <Link
-            href={"/register"}
-            className="text-blue-500 font-bold hover:underline"
+      </form>
+      <div className="mt-6 text-center">
+        <p className="text-sm text-gray-600">Or sign up with</p>
+        <div className="flex justify-center mt-2 space-x-4">
+          <button
+            onClick={() => handleSocialLogin("google")}
+            className="p-2 rounded-full bg-gray-100 text-2xl hover:bg-gray-200"
           >
-            Create a New Account
-          </Link>
-        </p>
-      
+            <FaGoogle />
+          </button>
+          <button
+            onClick={() => handleSocialLogin("github")}
+            className="p-2 rounded-full bg-gray-100 text-2xl hover:bg-gray-200"
+          >
+            <FaGithub />
+          </button>
+        </div>
+      </div>
+
+      <p className="text-sm text-gray-600">
+        New here?{" "}
+        <Link
+          href={"/register"}
+          className="text-blue-500 font-bold hover:underline"
+        >
+          Create a New Account
+        </Link>
+      </p>
     </div>
   );
 }
