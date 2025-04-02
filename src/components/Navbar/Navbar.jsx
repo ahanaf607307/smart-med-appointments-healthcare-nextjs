@@ -43,6 +43,12 @@ const Navbar = () => {
                 Contact
               </Link>
               <Link
+                href="/alldoctor"
+                className="px-3 py-2 rounded-lg hover:bg-gray-100"
+              >
+                Doctors
+              </Link>
+              <Link
                 href="/ambulance"
                 className="px-3 py-2 rounded-lg hover:bg-gray-100"
               >
