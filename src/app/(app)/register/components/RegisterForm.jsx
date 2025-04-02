@@ -1,4 +1,6 @@
 "use client";
+import { createDBConn } from "@/lib/createDBConn";
+import User from "@/schemas/userSchema";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -17,7 +19,7 @@ export default function RegisterForm() {
     // await registerUser({ name, email, password });
     toast("Submitting ....");
     try {
-      console.log(name, email, password);
+      // console.log(name, email, password);
       const response = await signIn("credentials", {
         email,
         password,
@@ -26,17 +28,28 @@ export default function RegisterForm() {
       });
       if (response.ok) {
         toast.success("Logged In successfully");
+        // Storing user in db
+        await fetch("/api/saveUser", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+            displayName: name,
+          }),
+        });
+
         router.push("/");
         form.reset();
       } else {
         toast.error("FAILED to Log In");
       }
-      console.log({ email, password });
     } catch (error) {
       console.log(error);
       toast.error("FAILED to Log In");
     }
-
   };
   const handleSocialLogin = async (providerName) => {
     console.log("social login", providerName);
