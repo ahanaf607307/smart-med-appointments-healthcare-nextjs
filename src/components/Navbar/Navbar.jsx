@@ -15,7 +15,7 @@ const Navbar = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <h1 className="text-2xl font-bold">HelthCare</h1>
+              <h1 className="text-2xl font-bold">HelthCaree</h1>
             </div>
             <div className="hidden lg:flex space-x-4">
               <Link href="/" className="px-3 py-2 rounded-lg hover:bg-gray-100">
@@ -113,12 +113,7 @@ const Navbar = () => {
             <Link href="/about" className="block px-4 py-2 hover:bg-gray-100">
               About
             </Link>
-            <Link
-              href="/dashboard"
-              className="block px-4 py-2 hover:bg-gray-100"
-            >
-              Services
-            </Link>
+          
             <Link href="/contact" className="block px-4 py-2 hover:bg-gray-100">
               Contact
             </Link>
