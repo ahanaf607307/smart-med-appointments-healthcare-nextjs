@@ -91,16 +91,18 @@ const page = () => {
     const { data, isLoading, isError, refetch } = useQuery({
         queryKey: ['bloodPosts'],
         queryFn: async () => {
-            // const { data } = await axios.get(`/all-blood-post?searchQuery=${searchQuery}`);
-            const { data } = await axios.get(`https://jsonplaceholder.typicode.com/posts`);
+            const { data } = await axios.get(`/api/allBloodPosts?searchQuery=${searchQuery}`);
+            // const { data } = await axios.get(`https://jsonplaceholder.typicode.com/posts`);
             return data;
         }
     });
 
+    console.log(data);
+
     if (isLoading) return <p>Loading....</p>
 
     // Filter posts based on search query and filters
-    const filteredPosts = displayData.filter((post) => {
+    const filteredPosts = data.filter((post) => {
         // Search filter
         const matchesSearch =
             post.patientName.toLowerCase().includes(searchQuery.toLowerCase()) ||
