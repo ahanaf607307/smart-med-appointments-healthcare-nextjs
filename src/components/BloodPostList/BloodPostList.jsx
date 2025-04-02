@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input"
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 import { Search } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import BloodDonateForm from "../BloodDonateForm/BloodDonateForm"
 import BloodPostCard from "../BloodPostCard/BloodPostCard"
 
@@ -82,13 +82,15 @@ const BloodPostList = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedPost, setSelectedPost] = useState(null);
 
-    const { data, isLoading, isError, refetch } = useQuery({
+    const { data=[], isLoading, isError, refetch } = useQuery({
         queryKey: ['bloodPosts'],
         queryFn: async () => {
-            const { data } = await axios.get(`/all-blood-post?searchQuery=${searchQuery}`);
+            const { data } = await axios.get(`/api/allBloodPosts`);
             return data;
         }
     });
+    // Map data array to show all blood posts.
+    console.log(data);
 
     if (isLoading) return <p>Loading....</p>
 
