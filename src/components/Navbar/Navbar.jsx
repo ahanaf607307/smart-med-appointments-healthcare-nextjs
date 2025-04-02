@@ -1,6 +1,6 @@
 "use client";
 import { signOut, useSession } from "next-auth/react";
-import Image from "next/image";
+
 import Link from "next/link";
 import { useState } from "react";
 import { FiAlignRight } from "react-icons/fi";
@@ -15,7 +15,7 @@ const Navbar = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <h1 className="text-2xl font-bold">HelthCaree</h1>
+              <h1 className="text-2xl font-bold">HelthCare</h1>
             </div>
             <div className="hidden lg:flex space-x-4">
               <Link href="/" className="px-3 py-2 rounded-lg hover:bg-gray-100">
