@@ -5,33 +5,57 @@ const bloodSchema = new mongoose.Schema({
     type: String,
     requied: [true, "Patient name is required"],
   },
-  bloodGroup: {
+  bloodType: {
     type: String,
-    requied: [true, "Blood group is required"],
+    requied: [true, "Blood type is required"],
   },
   unitsNeeded: {
-    type: String,
+    type: Number,
     requied: [true, "Units needed is required"],
+    default: 1,
+  },
+  urgencyLevel: {
+    type: String,
+    requied: [true, "Urgency level is required"],
   },
   hospital: {
     type: String,
-    requied: [true, "Hospital is required"],
+    requied: [true, "Hospital name is required"],
   },
-  postedDate: {
+  location: {
     type: String,
-    requied: [true, "Posted date is required"],
+    requied: [true, "Location is required"],
   },
-  neededDate: {
+  contactName: {
     type: String,
-    requied: [true, "Needed date name is required"],
+    requied: [true, "Contact name is required"],
   },
-  yourName: {
+  contactPhone: {
     type: String,
-    requied: [true, "Name phone is required"],
+    requied: [true, "Contact phone is required"],
   },
-  yourPhoneNumber: {
+  contactEmail: {
     type: String,
-    requied: [true, "Phone number is required"],
+    requied: [true, "Contact email is required"],
+  },
+  additionalInfo: {
+    type: String,
+    requied: [true, "Additional info is required"],
+    default: "N/A",
+  },
+  consent: {
+    type: Boolean,
+    requied: [true, "Consent is required"],
+    default: false,
+  },
+  postedAt: {
+    type: Number,
+    requied: [true, "PostedAt info is required"],
+  },
+  isDonate: {
+    type: Boolean,
+    requied: [true, "isDonate info is required"],
+    default: false,
   },
 });
 

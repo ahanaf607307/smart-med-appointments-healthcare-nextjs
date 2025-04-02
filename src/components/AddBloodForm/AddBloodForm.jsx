@@ -21,8 +21,8 @@ const AddBloodForm = () => {
     const [isConsentChecked, setIsConsentChecked] = useState(false);
 
     const { mutateAsync } = useMutation({
-        mutationFn: (newBloodPost) => {
-            axios.post(`/add-blood-post`, { newBloodPost })
+        mutationFn: async(newBloodPost) => {
+            await axios.post(`/api/addBloodPost`,  newBloodPost )
             // console.log("From Tanstack:", newBloodPost);
         },
         onSuccess: () => {
@@ -61,7 +61,7 @@ const AddBloodForm = () => {
                 postedAt: time.getTime(),
                 isDonate: false,
             };
-            console.table(newBloodData);
+            // console.table(newBloodData);
 
             await mutateAsync(newBloodData);
 
