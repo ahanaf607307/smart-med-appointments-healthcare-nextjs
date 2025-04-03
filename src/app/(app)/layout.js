@@ -5,15 +5,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import "../globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata = {
   title: "Smart Med Appointments",
@@ -22,10 +14,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <div >
       <NextAuthProvider>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        <div
+         
         >
           {/* <TanstackProvider> */}
             <Navbar />
@@ -37,8 +29,8 @@ export default function RootLayout({ children }) {
             <Footer></Footer>
             {/* <ReactQueryDevtools initialIsOpen={false} /> */}
           {/* </TanstackProvider> */}
-        </body>
+        </div>
       </NextAuthProvider>
-    </html>
+    </div>
   );
 }

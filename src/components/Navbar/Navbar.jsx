@@ -1,6 +1,6 @@
 "use client";
 import { signOut, useSession } from "next-auth/react";
-import Image from "next/image";
+
 import Link from "next/link";
 import { useState } from "react";
 import { FiAlignRight } from "react-icons/fi";
@@ -41,6 +41,12 @@ const Navbar = () => {
                 className="px-3 py-2 rounded-lg hover:bg-gray-100"
               >
                 Contact
+              </Link>
+              <Link
+                href="/alldoctor"
+                className="px-3 py-2 rounded-lg hover:bg-gray-100"
+              >
+                Doctors
               </Link>
               <Link
                 href="/ambulance"
@@ -107,12 +113,7 @@ const Navbar = () => {
             <Link href="/about" className="block px-4 py-2 hover:bg-gray-100">
               About
             </Link>
-            <Link
-              href="/dashboard"
-              className="block px-4 py-2 hover:bg-gray-100"
-            >
-              Services
-            </Link>
+          
             <Link href="/contact" className="block px-4 py-2 hover:bg-gray-100">
               Contact
             </Link>
