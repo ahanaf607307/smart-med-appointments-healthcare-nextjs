@@ -1,19 +1,11 @@
 import Footer from "@/components/Footer/Footer";
 import Navbar from "@/components/Navbar/Navbar";
 import NextAuthProvider from "@/provider/NextAuthProvider";
-// import { Geist, Geist_Mono } from "next/font/google";
+
 import { Toaster } from "react-hot-toast";
 import "../globals.css";
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
 
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 export const metadata = {
   title: "Smart Med Appointments",
@@ -25,7 +17,7 @@ export default function RootLayout({ children }) {
     <div >
       <NextAuthProvider>
         <div
-          // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+         
         >
           {/* <TanstackProvider> */}
             <Navbar />
