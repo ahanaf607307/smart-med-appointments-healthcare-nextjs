@@ -102,7 +102,7 @@ const page = () => {
     if (isLoading) return <p>Loading....</p>
 
     // Filter posts based on search query and filters
-    const filteredPosts = data.filter((post) => {
+    const filteredPosts = data?.filter((post) => {
         // Search filter
         const matchesSearch =
             post.patientName.toLowerCase().includes(searchQuery.toLowerCase()) ||
