@@ -18,7 +18,7 @@ import { Badge } from "@/components/ui/badge"
         <Badge className="absolute top-3 right-3 bg-red-500 text-white ">Available 24/7</Badge>
       </div>
       <CardHeader>
-        <CardTitle className="text-xl">Ambulance Name</CardTitle>
+        <CardTitle className="text-xl">Ambulance Team</CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
         <div className="text-lg font-bold text-red-600">
