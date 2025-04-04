@@ -185,7 +185,7 @@ const AddBloodForm = () => {
                                     className="min-h-[80px]"
                                 />
                                 {errors.location && (
-                                    <p className="text-sm text-red-500">Please enter the full hospital address/location.</p>
+                                    <p className="text-sm text-red-500">Please enter the full hospital addresss/location.</p>
                                 )}
                             </div>
                         </div>
