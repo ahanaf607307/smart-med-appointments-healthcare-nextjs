@@ -39,7 +39,7 @@ function Adddoctor() {
     <Card className="w-full mx-auto">
       <CardHeader>
         <CardTitle className="text-2xl">Doctor Information</CardTitle>
-        <CardDescription>Enter the doctor's details to add them to the system.</CardDescription>
+        <CardDescription>Enter the doctor's details to add them to the system</CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit(onSubmit)}>
         <CardContent className="space-y-4">
