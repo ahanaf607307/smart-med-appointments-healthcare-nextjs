@@ -1,39 +1,68 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { MoreHorizontal, Search, Edit, Trash2, ChevronDown } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
+import { useDebugValue, useEffect, useState } from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  MoreHorizontal,
+  Search,
+  Edit,
+  Trash2,
+  ChevronDown,
+} from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 export function DoctorTable({ doctors, onEdit, onDelete }) {
-  const [searchQuery, setSearchQuery] = useState("")
+  const [searchQuery, setSearchQuery] = useState("");
+  const { data: allDoctors = [] } = useQuery({
+    queryKey: ["allDoctors", `${searchQuery}`],
+    queryFn: async () => {
+      const res = await axios.get(`/api/getAllDoctors?query=${searchQuery}`);
+      return res.data;
+    },
+  });
+
+  console.log(allDoctors);
 
   const filteredDoctors = doctors.filter(
     (doctor) =>
       doctor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       doctor.specialty.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      doctor.hospital.toLowerCase().includes(searchQuery.toLowerCase()),
-  )
+      doctor.hospital.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const getStatusBadge = (status) => {
     switch (status) {
       case "active":
-        return <Badge className="bg-green-500">Active</Badge>
+        return <Badge className="bg-green-500">Active</Badge>;
       case "inactive":
-        return <Badge variant="secondary">Inactive</Badge>
+        return <Badge variant="secondary">Inactive</Badge>;
       case "on-leave":
         return (
           <Badge variant="outline" className="text-amber-500 border-amber-500">
             On Leave
           </Badge>
-        )
+        );
       default:
-        return null
+        return null;
     }
-  }
+  };
 
   return (
     <div className="space-y-4">
@@ -56,10 +85,18 @@ export function DoctorTable({ doctors, onEdit, onDelete }) {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => setSearchQuery("")}>All Doctors</DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setSearchQuery("cardiology")}>Cardiology</DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setSearchQuery("neurology")}>Neurology</DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setSearchQuery("pediatrics")}>Pediatrics</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setSearchQuery("")}>
+              All Doctors
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setSearchQuery("cardiology")}>
+              Cardiology
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setSearchQuery("neurology")}>
+              Neurology
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setSearchQuery("pediatrics")}>
+              Pediatrics
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
@@ -89,9 +126,15 @@ export function DoctorTable({ doctors, onEdit, onDelete }) {
                 <TableRow key={doctor.id}>
                   <TableCell className="font-medium">{doctor.name}</TableCell>
                   <TableCell>{doctor.specialty}</TableCell>
-                  <TableCell className="hidden md:table-cell">{doctor.hospital}</TableCell>
-                  <TableCell className="hidden md:table-cell">{doctor.email}</TableCell>
-                  <TableCell className="hidden lg:table-cell">{doctor.phone}</TableCell>
+                  <TableCell className="hidden md:table-cell">
+                    {doctor.hospital}
+                  </TableCell>
+                  <TableCell className="hidden md:table-cell">
+                    {doctor.email}
+                  </TableCell>
+                  <TableCell className="hidden lg:table-cell">
+                    {doctor.phone}
+                  </TableCell>
                   <TableCell>{getStatusBadge(doctor.status)}</TableCell>
                   <TableCell className="text-right">
                     <DropdownMenu>
@@ -123,6 +166,5 @@ export function DoctorTable({ doctors, onEdit, onDelete }) {
         </Table>
       </div>
     </div>
-  )
+  );
 }
-
