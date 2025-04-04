@@ -1,13 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 import { Search } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import DoctorCard from "./DoctorCard"
 
 // Mock data for doctors
 const doctorsData = [
@@ -16,7 +15,7 @@ const doctorsData = [
         name: "Dr. Sarah Johnson",
         category: "Cardiologist",
         gender: "Female",
-        image: "/placeholder.svg?height=100&width=100",
+        image: "https://templates.envytheme.com/hinton/default/assets/img/doctors/doctor-1.jpg",
         rating: 4.8,
         experience: "10 years",
     },
@@ -25,7 +24,7 @@ const doctorsData = [
         name: "Dr. Michael Chen",
         category: "Pediatrician",
         gender: "Male",
-        image: "/placeholder.svg?height=100&width=100",
+        image: "https://templates.envytheme.com/hinton/default/assets/img/doctors/doctor-1.jpg",
         rating: 4.9,
         experience: "15 years",
     },
@@ -34,7 +33,7 @@ const doctorsData = [
         name: "Dr. Emily Rodriguez",
         category: "Dermatologist",
         gender: "Female",
-        image: "/placeholder.svg?height=100&width=100",
+        image: "https://templates.envytheme.com/hinton/default/assets/img/doctors/doctor-1.jpg",
         rating: 4.7,
         experience: "8 years",
     },
@@ -43,7 +42,7 @@ const doctorsData = [
         name: "Dr. James Wilson",
         category: "Neurologist",
         gender: "Male",
-        image: "/placeholder.svg?height=100&width=100",
+        image: "https://templates.envytheme.com/hinton/default/assets/img/doctors/doctor-1.jpg",
         rating: 4.6,
         experience: "12 years",
     },
@@ -52,7 +51,7 @@ const doctorsData = [
         name: "Dr. Lisa Patel",
         category: "Orthopedic",
         gender: "Female",
-        image: "/placeholder.svg?height=100&width=100",
+        image: "https://templates.envytheme.com/hinton/default/assets/img/doctors/doctor-1.jpg",
         rating: 4.9,
         experience: "14 years",
     },
@@ -61,7 +60,7 @@ const doctorsData = [
         name: "Dr. Robert Kim",
         category: "Pediatrician",
         gender: "Male",
-        image: "/placeholder.svg?height=100&width=100",
+        image: "https://templates.envytheme.com/hinton/default/assets/img/doctors/doctor-1.jpg",
         rating: 4.5,
         experience: "7 years",
     },
@@ -133,34 +132,12 @@ export function Filter() {
             <div className="text-sm text-muted-foreground">Found {filteredDoctors.length} doctors</div>
 
             {/* Results grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredDoctors.map((doctor) => (
-                    <Card key={doctor.id}>
-                        <CardContent className="p-6">
-                            <div className="flex items-start gap-4">
-                                <Image
-                                    src={doctor.image || "/placeholder.svg"}
-                                    alt={doctor.name}
-                                    width={80}
-                                    height={80}
-                                    className="rounded-full object-cover"
-                                />
-                                <div className="space-y-1">
-                                    <h3 className="font-semibold">{doctor.name}</h3>
-                                    <p className="text-sm text-muted-foreground">{doctor.category}</p>
-                                    <div className="flex items-center gap-2 text-sm">
-                                        <span className="bg-primary/10 text-primary px-2 py-0.5 rounded-full text-xs">{doctor.gender}</span>
-                                        <span className="text-amber-500">★ {doctor.rating}</span>
-                                        <span>{doctor.experience}</span>
-                                    </div>
-                                    <Button size="sm" className="mt-2">
-                                        Book Appointment
-                                    </Button>
-                                </div>
-                            </div>
-                        </CardContent>
-                    </Card>
-                ))}
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {
+                    filteredDoctors?.map((doctor) =>
+                        <DoctorCard key={doctor.id} doctor={doctor} />
+                    )
+                }
             </div>
 
             {filteredDoctors.length === 0 && (
