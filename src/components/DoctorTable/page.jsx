@@ -1,6 +1,6 @@
 "use client";
 
-import { useDebugValue, useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Table,
   TableBody,
@@ -22,13 +22,12 @@ import {
   Search,
   Edit,
   Trash2,
-  ChevronDown,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-export function DoctorTable({ doctors, onEdit, onDelete }) {
+export function DoctorTable({ onEdit, onDelete }) {
   const [searchQuery, setSearchQuery] = useState("");
   const { data: allDoctors = [] } = useQuery({
     queryKey: ["allDoctors", `${searchQuery}`],
@@ -40,12 +39,6 @@ export function DoctorTable({ doctors, onEdit, onDelete }) {
 
   console.log(allDoctors);
 
-  const filteredDoctors = doctors.filter(
-    (doctor) =>
-      doctor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      doctor.specialty.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      doctor.hospital.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
   const getStatusBadge = (status) => {
     switch (status) {
@@ -77,28 +70,6 @@ export function DoctorTable({ doctors, onEdit, onDelete }) {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline">
-              Filter
-              <ChevronDown className="ml-2 h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => setSearchQuery("")}>
-              All Doctors
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setSearchQuery("cardiology")}>
-              Cardiology
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setSearchQuery("neurology")}>
-              Neurology
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setSearchQuery("pediatrics")}>
-              Pediatrics
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
       </div>
 
       <div className="rounded-md border">
@@ -115,14 +86,14 @@ export function DoctorTable({ doctors, onEdit, onDelete }) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filteredDoctors.length === 0 ? (
+            {allDoctors.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={7} className="h-24 text-center">
                   No doctors found.
                 </TableCell>
               </TableRow>
             ) : (
-              filteredDoctors.map((doctor) => (
+              allDoctors.map((doctor) => (
                 <TableRow key={doctor.id}>
                   <TableCell className="font-medium">{doctor.name}</TableCell>
                   <TableCell>{doctor.specialty}</TableCell>
