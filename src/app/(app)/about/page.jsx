@@ -7,7 +7,7 @@ const About = () => {
             <div className="text-center mb-8">
                 <h1 className="text-5xl font-bold mb-2 uppercase">About <span className='text-[#00BDE0]'>Us</span></h1>
                 <p className="mx-auto max-w-3xl text-lg text-muted-foreground">
-                    Dedicated to providing exceptional healthcare services to our community since 2010.
+                    Dedicated to providing exceptional healthcare services to our community since 2020.
                 </p>
             </div>
 
