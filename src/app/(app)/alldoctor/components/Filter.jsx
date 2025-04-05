@@ -7,75 +7,31 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import DoctorCard from "./DoctorCard"
+import { useQuery } from "@tanstack/react-query"
+import axios from "axios"
 
-// Mock data for doctors
-const doctorsData = [
-    {
-        id: 1,
-        name: "Dr. Sarah Johnson",
-        category: "Cardiologist",
-        gender: "Female",
-        image: "https://templates.envytheme.com/hinton/default/assets/img/doctors/doctor-1.jpg",
-        rating: 4.8,
-        experience: "10 years",
-    },
-    {
-        id: 2,
-        name: "Dr. Michael Chen",
-        category: "Pediatrician",
-        gender: "Male",
-        image: "https://templates.envytheme.com/hinton/default/assets/img/doctors/doctor-1.jpg",
-        rating: 4.9,
-        experience: "15 years",
-    },
-    {
-        id: 3,
-        name: "Dr. Emily Rodriguez",
-        category: "Dermatologist",
-        gender: "Female",
-        image: "https://templates.envytheme.com/hinton/default/assets/img/doctors/doctor-1.jpg",
-        rating: 4.7,
-        experience: "8 years",
-    },
-    {
-        id: 4,
-        name: "Dr. James Wilson",
-        category: "Neurologist",
-        gender: "Male",
-        image: "https://templates.envytheme.com/hinton/default/assets/img/doctors/doctor-1.jpg",
-        rating: 4.6,
-        experience: "12 years",
-    },
-    {
-        id: 5,
-        name: "Dr. Lisa Patel",
-        category: "Orthopedic",
-        gender: "Female",
-        image: "https://templates.envytheme.com/hinton/default/assets/img/doctors/doctor-1.jpg",
-        rating: 4.9,
-        experience: "14 years",
-    },
-    {
-        id: 6,
-        name: "Dr. Robert Kim",
-        category: "Pediatrician",
-        gender: "Male",
-        image: "https://templates.envytheme.com/hinton/default/assets/img/doctors/doctor-1.jpg",
-        rating: 4.5,
-        experience: "7 years",
-    },
-]
 
 // Get unique categories for the filter
-const categories = Array.from(new Set(doctorsData.map((doctor) => doctor.category)))
 
 export function Filter() {
     const [nameFilter, setNameFilter] = useState("")
     const [categoryFilter, setCategoryFilter] = useState("")
     const [genderFilter, setGenderFilter] = useState("")
 
+
+    const { data: allDoctors = [] } = useQuery({
+        queryKey: ["allDoctors", `${nameFilter}`],
+        queryFn: async () => {
+            const res = await axios.get(`/api/getAllDoctors?query=${nameFilter}`);
+            return res.data;
+        },
+    });
+    const categories = Array.from(new Set(allDoctors.map((doctor) => doctor.category)))
+
+    console.log(allDoctors);
+
     // Filter doctors based on all filters
-    const filteredDoctors = doctorsData.filter((doctor) => {
+    const filteredDoctors = allDoctors.filter((doctor) => {
         const matchesName = doctor.name.toLowerCase().includes(nameFilter.toLowerCase())
         const matchesCategory = categoryFilter === "" || doctor.category === categoryFilter
         const matchesGender = genderFilter === "" || doctor.gender === genderFilter
