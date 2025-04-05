@@ -56,7 +56,7 @@ export function DoctorDashboard() {
             doctor={selectedDoctor}
             open={isEditOpen}
             onOpenChange={setIsEditOpen}
-            onSave={handleSaveDoctor}
+            // onSave={}
           />
 
           <DeleteDoctorDialog

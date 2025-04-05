@@ -31,6 +31,12 @@ const Navbar = () => {
                 About
               </Link>
               <Link
+                href="/ask-med"
+                className="px-3 py-2 rounded-lg hover:bg-gray-100"
+              >
+                AI
+              </Link>
+              <Link
                 href="/dashboard"
                 className="px-3 py-2 rounded-lg hover:bg-gray-100"
               >
@@ -113,7 +119,7 @@ const Navbar = () => {
             <Link href="/about" className="block px-4 py-2 hover:bg-gray-100">
               About
             </Link>
-          
+
             <Link href="/contact" className="block px-4 py-2 hover:bg-gray-100">
               Contact
             </Link>
