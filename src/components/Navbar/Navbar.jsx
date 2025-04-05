@@ -15,7 +15,7 @@ const Navbar = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <h1 className="text-2xl font-bold">HelthCARE 2</h1>
+              <h1 className="text-2xl font-bold">HelthCARE</h1>
             </div>
             <div className="hidden lg:flex space-x-4">
               <Link href="/" className="px-3 py-2 rounded-lg hover:bg-gray-100">

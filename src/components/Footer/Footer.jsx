@@ -7,10 +7,12 @@ const Footer = () => {
             <div className='max-w-11/12 mx-auto'>
                 {/* company name and logo section  */}
                 <div className='flex md:flex-row flex-col md:justify-between items-center pt-5'>
-                    <h1 className='text-4xl text-blue-400 pl-2'>Logo image</h1>
+                    <div className="flex items-center">
+                        <h1 className="text-2xl font-bold">HelthCARE</h1>
+                    </div>
                     <div className='flex gap-2.5 mt-4 lg:mt-0'>
-                        <button className='py-2.5 px-6 rounded-2xl border border-blue-400 hover:bg-white hover:text-blue-400 hover:border-transparent'>Contact Us</button>
-                        <button className='py-2.5 px-6 rounded-2xl border border-blue-400 hover:bg-white hover:text-blue-400 hover:border-transparent'>Appointment</button>
+                        <Link href={"/about"}><button className='py-2.5 px-6 rounded-2xl border border-blue-400 hover:bg-white hover:text-blue-400 hover:border-transparent'>Contact Us</button></Link>
+                        <Link href={"/alldoctor"}><button className='py-2.5 px-6 rounded-2xl border border-blue-400 hover:bg-white hover:text-blue-400 hover:border-transparent'>Appointment</button></Link>
                     </div>
                 </div>
 
@@ -21,11 +23,11 @@ const Footer = () => {
                     <div>
                         <h1 className='text-xl text-center'>Our Services</h1>
                         <ul className='text-center mt-4'>
-                            <li><Link href={"/"}>Eye Care</Link></li>
-                            <li><Link href={"/"}>Eye Care</Link></li>
-                            <li><Link href={"/"}>Eye Care</Link></li>
-                            <li><Link href={"/"}>Eye Care</Link></li>
-                            <li><Link href={"/"}>Eye Care</Link></li>
+                            <li><Link href={"/"}>Cardiology</Link></li>
+                            <li><Link href={"/"}>Dermatology</Link></li>
+                            <li><Link href={"/"}>Neurology</Link></li>
+                            <li><Link href={"/"}>Orthopedics</Link></li>
+                            <li><Link href={"/"}>Pediatrics</Link></li>
                         </ul>
                     </div>
                     {/* Useful Link section  */}
@@ -79,7 +81,9 @@ const Footer = () => {
                 <p className='lg:text-base text-sm text-center'>Copyrights © 2024. All Rights Reserved By Smart med appointment</p>
                 <div className='flex items-center'>
                     <p>A product of</p>
-                    <h1 className='text-4xl text-blue-400 pl-2'>Logo</h1>
+                    <h1 className='text-4xl text-blue-400 pl-2'><div className="flex items-center">
+                        <h1 className="text-2xl font-bold">HelthCARE</h1>
+                    </div></h1>
                 </div>
             </div>
         </div>

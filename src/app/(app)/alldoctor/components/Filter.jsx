@@ -16,7 +16,7 @@ import axios from "axios"
 export function Filter() {
     const [nameFilter, setNameFilter] = useState("")
     const [categoryFilter, setCategoryFilter] = useState("")
-    const [genderFilter, setGenderFilter] = useState("")
+
 
 
     const { data: allDoctors = [] } = useQuery({
