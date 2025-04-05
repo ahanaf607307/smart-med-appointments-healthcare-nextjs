@@ -13,6 +13,7 @@ import Link from "next/link"
 
 
 export function DoctorDashboard() {
+  const [doctors, setDoctors] = useState([])
   const [selectedDoctor, setSelectedDoctor] = useState(null)
   const [isEditOpen, setIsEditOpen] = useState(false)
   const [isDeleteOpen, setIsDeleteOpen] = useState(false)
@@ -22,9 +23,15 @@ export function DoctorDashboard() {
     setIsEditOpen(true)
   }
 
+  
   const handleDelete = (doctor) => {
     setSelectedDoctor(doctor)
     setIsDeleteOpen(true)
+  }
+
+  const handleSaveDoctor = (updatedDoctor) => {
+    setDoctors(doctors.map((doc) => (doc.id === updatedDoctor.id ? updatedDoctor : doc)))
+    setIsEditOpen(false)
   }
 
 
@@ -56,7 +63,7 @@ export function DoctorDashboard() {
             doctor={selectedDoctor}
             open={isEditOpen}
             onOpenChange={setIsEditOpen}
-            // onSave={}
+            onSave={handleSaveDoctor}
           />
 
           <DeleteDoctorDialog
