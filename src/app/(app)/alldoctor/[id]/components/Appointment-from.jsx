@@ -74,7 +74,10 @@ const departments = [
 ]
 
 
-export default function AppointmentForm() {
+export default function AppointmentForm({ id }) {
+
+    console.log(id)
+
     const [selectedDepartment, setSelectedDepartment] = useState(null)
     const [isSubmitting, setIsSubmitting] = useState(false)
 

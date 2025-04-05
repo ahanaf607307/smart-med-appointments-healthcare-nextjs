@@ -30,7 +30,7 @@ const DoctorCard = ({ doctor }) => {
             {/* Doctor Info */}
             <div className="">
                 <div className="">
-                    <Link href={`/alldoctor/appointment`}>
+                    <Link href={`/alldoctor/${id}`}>
                         <h1 className="text-2xl font-bold">{name}</h1>
                     </Link>
                 </div>
