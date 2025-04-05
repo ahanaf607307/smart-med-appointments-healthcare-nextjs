@@ -20,9 +20,9 @@ const AmbulanceService = async () => {
         Ambulance Service
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-20">
-        {ambulances?.map((ambulance: any) => (
-          <AmbulanceCard key={ambulance._id} ambulance={ambulance} />
-        ))}
+      {
+        ambulances.map(ambulance => <AmbulanceCard key={ambulance?._id} ambulance={ambulance}/>)
+      }
       </div>
     </div>
   );
