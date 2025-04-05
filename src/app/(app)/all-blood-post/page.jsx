@@ -248,7 +248,7 @@ const page = () => {
                 {filteredPosts.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {filteredPosts.map((post) => (
-                            <Card key={post.id} className="overflow-hidden">
+                            <Card key={post._id} className="overflow-hidden">
                                 <CardHeader className="pb-1">
                                     <div className="flex justify-between items-center">
                                         <Badge variant="outline" className="text-lg font-bold border-2">
