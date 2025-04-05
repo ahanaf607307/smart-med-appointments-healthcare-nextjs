@@ -94,7 +94,7 @@ export function DoctorTable({ onEdit, onDelete }) {
               </TableRow>
             ) : (
               allDoctors.map((doctor) => (
-                <TableRow key={doctor.id}>
+                <TableRow key={doctor._id}>
                   <TableCell className="font-medium">{doctor.name}</TableCell>
                   <TableCell>{doctor.specialty}</TableCell>
                   <TableCell className="hidden md:table-cell">
