@@ -1,17 +1,18 @@
 import AmbulanceCard from "@/components/AmbulanceCard/AmbulanceCard";
 import React from "react";
 
+// ✅ make sure it's a server component
 const AmbulanceService = async () => {
-  const res = await fetch("http://localhost:3000/api/getAllAmbulances", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getAllAmbulances`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
+    // ✅ Add this to disable caching during SSR
+    cache: "no-store",
   });
-  const ambulances = await res.json();
 
-  // Map ambulances array and show all the information in card.
-  console.log(ambulances);
+  const ambulances = await res.json();
 
   return (
     <div className="p-5">
@@ -19,13 +20,9 @@ const AmbulanceService = async () => {
         Ambulance Service
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-20">
-        <AmbulanceCard />
-        <AmbulanceCard />
-        <AmbulanceCard />
-        <AmbulanceCard />
-        <AmbulanceCard />
-        <AmbulanceCard />
-        <AmbulanceCard />
+        {ambulances?.map((ambulance: any) => (
+          <AmbulanceCard key={ambulance._id} ambulance={ambulance} />
+        ))}
       </div>
     </div>
   );
