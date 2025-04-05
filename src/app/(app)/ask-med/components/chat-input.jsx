@@ -1,5 +1,6 @@
 "use client";
 
+import { GoogleGenAI } from "@google/genai";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 
@@ -42,54 +43,34 @@ function ChatInput() {
     if (!message.trim()) return;
 
     setIsLoading(true);
+    setChat((prev) => [...prev, message]);
     // Here you would typically send the message to your API
-    // console.log("Sending message:", message)
-    const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization:
-          "Bearer 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",
-        "HTTP-Referer": "<YOUR_SITE_URL>", // Optional. Site URL for rankings on openrouter.ai.
-        "X-Title": "<YOUR_SITE_NAME>", // Optional. Site title for rankings on openrouter.ai.
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // model: "deepseek/deepseek-v3-base:free",
-        model: "deepseek/deepseek-chat-v3-0324:free",
-        messages: [
-          {
-            role: "user",
-            content: message,
-          },
-        ],
-      }),
-    });
-    const { choices } = await res.json();
 
-    const aiReply = choices[0]?.message || "No response found.";
-    setChat((prev) => [...prev, aiReply]);
+    const ai = new GoogleGenAI({
+      apiKey: process.env.NEXT_PUBLIC_GEMINI_API_KEY,
+    });
+
+    const response = await ai.models.generateContent({
+      model: "gemini-2.0-flash",
+      contents: message,
+    });
+    setChat((prev) => [...prev, response.text]);
 
     setMessage("");
     setIsLoading(false);
-
-    // // Simulate API call
-    // setTimeout(() => {
-    //   setMessage("");
-    //   setIsLoading(false);
-    // }, 1000);
   };
 
   return (
     <div className="w-full max-w-3xl mx-auto p-4">
-      <div>
-        {chat.map((msg) => (
+      <div className="space-y-3 mb-3">
+        {chat.map((msg, indx) => (
           <div
             key={Math.random()}
-            className={`p-2 space-y-2 ${
-              msg.role === "user" ? "bg-blue-50" : "bg-gray-50"
+            className={`p-3 rounded-md ${
+              indx % 2 ? "bg-green-100" : "bg-sky-100 text-right"
             }`}
           >
-            <ReactMarkdown>{msg.content}</ReactMarkdown>
+            <ReactMarkdown>{msg}</ReactMarkdown>
           </div>
         ))}
       </div>
