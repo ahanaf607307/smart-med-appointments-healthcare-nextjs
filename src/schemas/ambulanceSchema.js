@@ -10,7 +10,7 @@ const ambulanceSchema = new mongoose.Schema({
     required: [true, "ambulance image is required"],
   },
   rentPrice: {
-    type: Number,
+    type: String,
     required: [true, "rent price is required"],
   },
   location: {
