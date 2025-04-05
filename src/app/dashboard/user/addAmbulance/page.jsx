@@ -10,42 +10,37 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 function AddAmbulance() {
   const {
     register,
     handleSubmit,
-    setValue,
     reset,
     formState: { errors },
   } = useForm();
+  const { mutateAsync } = useMutation({
+    mutationFn: async (ambulanceInfo) => {
+      await axios.post(`/api/addAmbulance`, ambulanceInfo);
+    },
+    onSuccess: () => {
+      toast.success("Ambulance added successfully!!");
+    },
+    onError: () => {
+      toast.error("Something went wrong");
+    },
+  });
+
   const onSubmit = async (data) => {
-    const ambulanceName = data.ambulanceName;
-    const ambulanceImage = data.ambulanceImage;
-    const rentPrice = data.rentPrice;
-    const location = data.location;
-    const phoneNumber = data.phoneNumber;
-    const ambulanceData = {
-      ambulanceName,
-      ambulanceImage,
-      rentPrice,
-      location,
-      phoneNumber,
-    };
-
-    const res = await fetch("/api/addAmbulance", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(ambulanceData),
-    });
-
-    const resData = await res.json();
-    reset();
-
-    console.log(resData);
+    try {
+      await mutateAsync(data);
+      reset();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

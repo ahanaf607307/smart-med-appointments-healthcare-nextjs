@@ -1,34 +1,34 @@
 import mongoose from "mongoose";
 
 const doctorSchema = new mongoose.Schema({
-  email: {
+  category: {
     type: String,
-    required: [true, "Email is required"],
+    required: [true, "category is required"],
   },
-  hospital: {
+  degree: {
     type: String,
     required: [true, "Hospital name is required"],
   },
-  id: {
+  gender: {
     type: String,
-    required: [true, "Doctor id is required"],
+    required: [true, "gender id is required"],
+    enum: ["all", "Male", "Female"],
+  },
+  hospital: {
+    type: String,
+    required: [true, "hospital name is required"],
+  },
+  imageLink: {
+    type: String,
+    required: [true, "imageLink phone number is required"],
+  },
+  location: {
+    type: String,
+    required: [true, "location specialty is required"],
   },
   name: {
     type: String,
-    required: [true, "Doctor name is required"],
-  },
-  phone: {
-    type: String,
-    required: [true, "Doctor phone number is required"],
-  },
-  specialty: {
-    type: String,
-    required: [true, "Doctor specialty is required"],
-  },
-  status: {
-    type: String,
-    enum: ["active", "inactive", "on-leave"],
-    default: "active",
+    required: [true, "location specialty is required"],
   },
 });
 
