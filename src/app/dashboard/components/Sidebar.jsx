@@ -2,6 +2,9 @@
 import { Button } from "@/components/ui/button"
 import { Calendar, FileText, LayoutDashboard, LogOut, Settings, Users } from "lucide-react"
 import Link from "next/link"
+import { FaHandHoldingWater } from "react-icons/fa"
+import { FaSquarePlus, FaUserDoctor } from "react-icons/fa6"
+import { MdMedicalInformation } from "react-icons/md"
 
 export default function Sidebar({ isMobile, sidebarOpen, user, handleLogout }) {
     const navItems = [
