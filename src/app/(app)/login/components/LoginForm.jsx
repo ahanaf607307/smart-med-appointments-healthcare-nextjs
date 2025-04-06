@@ -14,7 +14,7 @@ export default function LoginForm() {
     const email = form.email.value;
     const password = form.password.value;
 
-    //Fetching corresponding user
+    // Fetching corresponding user
     const res = await fetch("/api/getUser", {
       method: "POST",
       headers: {
@@ -29,7 +29,12 @@ export default function LoginForm() {
     const data = await res.json();
     console.log("Response is: ", data);
 
-    toast("Submitting ....");
+
+    if (!data.acknowledged) {
+      toast.error("User not found or incorrect credentials");
+      return;
+    }
+
     try {
       const response = await signIn("credentials", {
         email,
@@ -37,20 +42,21 @@ export default function LoginForm() {
         callbackUrl: "/",
         redirect: false,
       });
+
       console.log(response);
       if (response.ok) {
-        toast.success("Logged In successfully");
+        toast.success("Logged in successfully");
         router.push("/");
         form.reset();
       } else {
-        toast.error("FAILED to Log In");
+        toast.error("Failed to log in. Please try again.");
       }
-      console.log({ email, password });
     } catch (error) {
       console.log(error);
-      toast.error("FAILED to Log In");
+      toast.error("An error occurred while logging in.");
     }
   };
+
   const handleSocialLogin = async (providerName) => {
     console.log("social login", providerName);
     const result = await signIn(providerName, { redirect: false });

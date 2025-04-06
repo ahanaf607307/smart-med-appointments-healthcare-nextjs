@@ -1,3 +1,5 @@
+'use client'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import {
     Table,
     TableBody,
@@ -6,6 +8,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+import { useState } from "react";
 
 const invoices = [
     {
@@ -31,6 +34,9 @@ const invoices = [
 ]
 
 export function TableDemo() {
+    const [Status, setStatus] = useState("")
+    console.log(Status);
+
     return (
         <Table>
             <TableHeader>
@@ -47,7 +53,18 @@ export function TableDemo() {
                         <TableCell className="font-medium">{invoice.Name}</TableCell>
                         <TableCell>{invoice.category}</TableCell>
                         <TableCell>{invoice.Role}</TableCell>
-                        <TableCell className="text-right">{invoice.status}</TableCell>
+                        <TableCell className={"flex justify-end"}>
+                            <Select value={Status} onValueChange={setStatus}>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Status Update" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="all">Update</SelectItem>
+                                    <SelectItem value="Doctor">Doctor</SelectItem>
+                                    <SelectItem value="Admin">Admin</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </TableCell>
                     </TableRow>
                 ))}
             </TableBody>
