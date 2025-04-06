@@ -8,61 +8,57 @@ import { FaGoogle } from "react-icons/fa6";
 
 export default function LoginForm() {
   const router = useRouter();
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const form = e.target;
-  //   const email = form.email.value;
-  //   const password = form.password.value;
-
-  //   // Fetching corresponding user
-    
-
-  //   try {
-  //     const response = await signIn("credentials", {
-  //       email,
-  //       password,
-  //       callbackUrl: "/",
-  //       redirect: false,
-  //     });
-
-  //     console.log(response);
-  //     if (response.ok) {
-  //       toast.success("Logged in successfully");
-  //       router.push("/");
-  //       form.reset();
-  //     } else {
-  //       toast.error("Failed to log in. Please try again.");
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //     toast.error("An error occurred while logging in.");
-  //   }
-  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    try {
-      const res = await signIn("credentials", {
+
+    // Fetching corresponding user
+    const res = await fetch("/api/getUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         email,
         password,
+      }),
+    });
+
+    const data = await res.json();
+    console.log("Response is: ", data);
+
+    if (!data.acknowledged) {
+      toast.error("User not found or incorrect credentials");
+      return;
+    }
+
+    try {
+      const response = await signIn("credentials", {
+        email,
+        password,
+        callbackUrl: "/",
         redirect: false,
       });
-      if (res.status === 401) {
-        toast.error("Invalid Credentials");
-      }
-      if (res.status === 200) {
+
+      console.log(response);
+      if (response.ok) {
+        toast.success("Logged In successfully");
         router.push("/");
         form.reset();
-        toast.success("Login Successful");
+      } else {
+        toast.error("FAILED to Log In");
+        toast.error("Failed to log in. Please try again.");
       }
+      console.log({ email, password });
     } catch (error) {
-      toast.error("Error, trrrrry again");
-    } 
+      console.log(error);
+      toast.error("FAILED to Log In");
+      toast.error("An error occurred while logging in.");
+    }
   };
+
   const handleSocialLogin = async (providerName) => {
     console.log("social login", providerName);
     const result = await signIn(providerName, { redirect: false });
