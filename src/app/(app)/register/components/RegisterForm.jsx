@@ -1,6 +1,4 @@
 "use client";
-import { createDBConn } from "@/lib/createDBConn";
-import User from "@/schemas/userSchema";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -17,7 +15,7 @@ export default function RegisterForm() {
     const email = form.email.value;
     const password = form.password.value;
     // await registerUser({ name, email, password });
-    toast("Submitting ....");
+
     try {
       // console.log(name, email, password);
       const response = await signIn("credentials", {
@@ -38,8 +36,11 @@ export default function RegisterForm() {
             email,
             password,
             displayName: name,
+            userType: "general",
           }),
         });
+        
+
 
         router.push("/");
         form.reset();

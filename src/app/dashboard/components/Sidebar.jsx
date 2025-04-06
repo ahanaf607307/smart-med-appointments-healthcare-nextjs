@@ -6,11 +6,11 @@ import Link from "next/link"
 export default function Sidebar({ isMobile, sidebarOpen, user, handleLogout }) {
     const navItems = [
         { icon: <LayoutDashboard className="h-5 w-5" />, label: "Dashboard", href: "/dashboard" },
-        { icon: <Users className="h-5 w-5" />, label: "Add Ambulance", href: "/dashboard/addAmbulance" },
+        { icon: <Users className="h-5 w-5" />, label: "Add Ambulance", href: "/dashboard/admin/addAmbulance" },
         { icon: <Users className="h-5 w-5" />, label: "Add Blood Post", href: "/dashboard/user/add-blood-post" },
-        { icon: <Users className="h-5 w-5" />, label: "Doctor Management", href: "/dashboard/doctorManagement" },
-        { icon: <Calendar className="h-5 w-5" />, label: "Appointments", href: "/dashboard/manageUser" },
-        { icon: <Calendar className="h-5 w-5" />, label: "Add doctor", href: "/dashboard/adddoctor" },
+        { icon: <Users className="h-5 w-5" />, label: "Doctor Management", href: "/dashboard/admin/doctorManagement" },
+        { icon: <Calendar className="h-5 w-5" />, label: "Appointments", href: "/dashboard/admin/manageUser" },
+        { icon: <Calendar className="h-5 w-5" />, label: "Add doctor", href: "/dashboard/admin/adddoctor" },
         { icon: <FileText className="h-5 w-5" />, label: "Medical Records", href: "/dashboard/records" },
         { icon: <Settings className="h-5 w-5" />, label: "Settings", href: "/dashboard/settings" },
         { icon: <Calendar className="h-5 w-5" />, label: "Appointment", href: "/dashboard/doctor/appointment" },
