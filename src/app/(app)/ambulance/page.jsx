@@ -3,12 +3,11 @@ import React from "react";
 
 // ✅ make sure it's a server component
 const AmbulanceService = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getAllAmbulances`, {
+  const res = await fetch('/api/getAllAmbulances', {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
-    // ✅ Add this to disable caching during SSR
     cache: "no-store",
   });
 

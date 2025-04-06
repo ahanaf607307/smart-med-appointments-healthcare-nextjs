@@ -1,3 +1,4 @@
+import AddReview from "@/components/AddReview/AddReview";
 import Banner from "@/components/Banner/Banner";
 import NewsLetter from "@/components/NewsLetter/NewsLetter";
 import OurService from "@/components/OurServices/OurService";
@@ -24,6 +25,7 @@ export default function Home() {
       <Ourteam></Ourteam>
       <NewsLetter />
       <ReviewAndRating />
+      <AddReview/>
     </div>
   );
 }
