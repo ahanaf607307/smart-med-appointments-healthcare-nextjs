@@ -112,17 +112,55 @@ const Navbar = () => {
           </div>
         </div>
         {isOpen && (
-          <div className="lg:hidden bg-white shadow-md">
-            <Link href="/" className="block px-4 py-2 hover:bg-gray-100">
-              Home
-            </Link>
-            <Link href="/about" className="block px-4 py-2 hover:bg-gray-100">
-              About
-            </Link>
-
-            <Link href="/contact" className="block px-4 py-2 hover:bg-gray-100">
-              Contact
-            </Link>
+          <div className="lg:hidden bg-white shadow-md flex flex-col">
+            <Link href="/" className="px-3 py-2 rounded-lg hover:bg-gray-100">
+                Home
+              </Link>
+              <Link href="/all-blood-post" className="px-3 py-2 rounded-lg hover:bg-gray-100">
+                All Blood Post
+              </Link>
+              <Link
+                href="/about"
+                className="px-3 py-2 rounded-lg hover:bg-gray-100"
+              >
+                About
+              </Link>
+              <Link
+                href="/ask-med"
+                className="px-3 py-2 rounded-lg hover:bg-gray-100"
+              >
+                AI
+              </Link>
+              <Link
+                href="/dashboard"
+                className="px-3 py-2 rounded-lg hover:bg-gray-100"
+              >
+                Services
+              </Link>
+              <Link
+                href="/contact"
+                className="px-3 py-2 rounded-lg hover:bg-gray-100"
+              >
+                Contact
+              </Link>
+              <Link
+                href="/alldoctor"
+                className="px-3 py-2 rounded-lg hover:bg-gray-100"
+              >
+                Doctors
+              </Link>
+              <Link
+                href="/ambulance"
+                className="px-3 py-2 rounded-lg hover:bg-gray-100"
+              >
+                Ambulance Service
+              </Link>
+              <Link
+                href="/dashboard/user/add-blood-post"
+                className="px-3 py-2 rounded-lg hover:bg-gray-100"
+              >
+                Dashboard
+              </Link>
           </div>
         )}
       </nav>

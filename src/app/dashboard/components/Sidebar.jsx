@@ -9,13 +9,12 @@ import { MdMedicalInformation } from "react-icons/md"
 export default function Sidebar({ isMobile, sidebarOpen, user, handleLogout }) {
     const navItems = [
         { icon: <LayoutDashboard className="h-5 w-5" />, label: "Dashboard", href: "/dashboard" },
-        { icon: <FaSquarePlus className="h-5 w-5" />, label: "Add Ambulance", href: "/dashboard/addAmbulance" },
-        { icon: <FaHandHoldingWater className="h-5 w-5" />, label: "Add Blood Post", href: "/dashboard/user/add-blood-post" },
-        { icon: <FaUserDoctor className="h-5 w-5" />, label: "Doctor Management", href: "/dashboard/doctorManagement" },
-        { icon: <Calendar className="h-5 w-5" />, label: "Manage User", href: "/dashboard/manageUser" },
-        { icon: <FaUserDoctor className="h-5 w-5" />, label: "Add doctor", href: "/dashboard/adddoctor" },
-        { icon: <FileText className="h-5 w-5" />, label: "Medical Records", href: "/dashboard/records" },
-        { icon: <MdMedicalInformation className="h-5 w-5" />, label: "Appointment", href: "/dashboard/doctor/appointment" },
+        { icon: <Users className="h-5 w-5" />, label: "Add Ambulance", href: "/dashboard/addAmbulance" },
+        { icon: <Users className="h-5 w-5" />, label: "Add Blood Post", href: "/dashboard/user/add-blood-post" },
+        { icon: <Users className="h-5 w-5" />, label: "Doctor Management", href: "/dashboard/doctorManagement" },
+        { icon: <Calendar className="h-5 w-5" />, label: "Appointments", href: "/dashboard/manageUser" },
+        { icon: <Calendar className="h-5 w-5" />, label: "Add doctor", href: "/dashboard/adddoctor" },
+        { icon: <Calendar className="h-5 w-5" />, label: "Appointment", href: "/dashboard/doctor/appointment" },
         { icon: <Calendar className="h-5 w-5" />, label: "Complete", href: "/dashboard/doctor/completeAppointment" },
     ]
 
