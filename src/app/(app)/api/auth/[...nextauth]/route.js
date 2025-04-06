@@ -54,19 +54,28 @@ export const authOptions = {
       if (account?.provider) {
         token.provider = account.provider;
       }
-      if (user?.userType) {
+
+      if (user) {
+        token.id = user._id || user.id;
+        token.name = user.name;
+        token.email = user.email;
         token.userType = user.userType;
       }
+
       return token;
     },
     async session({ session, token }) {
       session.provider = token.provider;
-      if (token.userType) {
-        session.user.userType = token.userType;
-      }
+
+      session.user = {
+        id: token.id,
+        name: token.name,
+        email: token.email,
+        userType: token.userType,
+      };
+
       return session;
     },
-    
   },
 };
 const handler = NextAuth(authOptions);
