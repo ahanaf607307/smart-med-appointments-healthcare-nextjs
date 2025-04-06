@@ -13,7 +13,6 @@ const ReviewCard = () => {
                 <h1 className="font-semibold text-xl">
                  Mr.Ahanaf Mubasshir
                 </h1>
-                <p className="font-medium text-gray-600">Cricketer</p>
               </div>
             </div>
             <p className="text-sm text-gray-500 mb-5">
