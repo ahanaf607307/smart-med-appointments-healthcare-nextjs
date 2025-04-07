@@ -1,6 +1,4 @@
 "use client";
-import { createDBConn } from "@/lib/createDBConn";
-import User from "@/schemas/userSchema";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -10,47 +8,98 @@ import { FaGoogle } from "react-icons/fa6";
 
 export default function RegisterForm() {
   const router = useRouter();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const form = e.target;
+  //   const name = form.name.value;
+  //   const email = form.email.value;
+  //   const password = form.password.value;
+  //   // await registerUser({ name, email, password });
+
+  //   try {
+  //     // console.log(name, email, password);
+  //     const response = await signIn("credentials", {
+  //       email,
+  //       password,
+  //       callbackUrl: "/",
+  //       redirect: false,
+  //     });
+  //     if (response.ok) {
+  //       toast.success("Logged In successfully");
+  //       // Storing user in db
+  //       await fetch("/api/saveUser", {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           email,
+  //           password,
+  //           displayName: name,
+  //           userType: "general",
+  //         }),
+  //       });
+
+  //       router.push("/");
+  //       form.reset();
+  //     } else {
+  //       toast.error("FAILED to Log In");
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     toast.error("FAILED to Log In");
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    // await registerUser({ name, email, password });
-    toast("Submitting ....");
+    const photo = form.photo.value;
+
     try {
-      // console.log(name, email, password);
-      const response = await signIn("credentials", {
+      // 1. Register the user in your database
+      const res = await fetch("/api/saveUser", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          password,
+          displayName: name,
+          userType: "general",
+        }),
+      });
+
+      const data = await res.json();
+      console.log(data);
+
+      if (!res.ok) {
+        toast.error(data.message || "Registration failed");
+        return;
+      }
+
+      // 2. Then login the user automatically
+      const loginRes = await signIn("credentials", {
         email,
         password,
-        callbackUrl: "/",
         redirect: false,
       });
-      if (response.ok) {
-        toast.success("Logged In successfully");
-        // Storing user in db
-        await fetch("/api/saveUser", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email,
-            password,
-            displayName: name,
-          }),
-        });
 
+      if (loginRes.ok) {
+        toast.success("Registered and logged in successfully");
         router.push("/");
-        form.reset();
       } else {
-        toast.error("FAILED to Log In");
+        toast.error("Login failed after registration");
       }
-    } catch (error) {
-      console.log(error);
-      toast.error("FAILED to Log In");
+
+      form.reset();
+    } catch (err) {
+      console.error(err);
+      toast.error("Something went wrong");
     }
   };
+
   const handleSocialLogin = async (providerName) => {
     console.log("social login", providerName);
     const result = await signIn(providerName, { redirect: false });

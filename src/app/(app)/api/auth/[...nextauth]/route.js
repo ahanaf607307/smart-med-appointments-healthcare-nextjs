@@ -1,91 +1,83 @@
-import { loginUser } from "@/app/(app)/actions/auth/loginUser";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import { signIn } from "next-auth/react";
-
 
 export const authOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
+  // Configure one or more authentication providers
   providers: [
     CredentialsProvider({
-      // The name to display on the sign in form (e.g. "Sign in with...")
       name: "Credentials",
-      // `credentials` is used to generate a form on the sign in page.
-      // You can specify which fields should be submitted, by adding keys to the `credentials` object.
-      // e.g. domain, username, password, 2FA token, etc.
-      // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        email: { label: "email", type: "text", placeholder: "enter eamil" },
         password: { label: "Password", type: "password" },
-        email:{ label: "Email", type: "email" }
       },
       async authorize(credentials, req) {
-        // Add logic here to look up the user from the credentials supplied
-        console.log(credentials);
-        const user = await loginUser(credentials)
-        // const user = await loginUser(credentials)
-        console.log(user)
-        if (user) {
-          // Any object returned will be saved in `user` property of the JWT
-          return user;
-        } else {
-          // If you return null then an error will be displayed advising the user to check their details.
-          return null;
+        const { email, password } = credentials;
 
-          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
+        try {
+          const res = await fetch(
+            `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/getUser`,
+            {
+              // Use absolute URL
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email, password }),
+            }
+          );
+
+          if (!res.ok) {
+            return null;
+          }
+
+          const user = await res.json();
+
+          return user || null;
+        } catch (error) {
+          console.error("Fetch error:", error);
+          return null;
         }
       },
-      
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
-    GitHubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
-    }),
   ],
-  // callbacks: {
-  //   async jwt({ token, user }) {
-  //     if (user) token.id = user.id;
-  //     return token;
-  //   },
-  //   async session({ session, token }) {
-  //     if (token) session.user.id = token.id;
-  //     return session;
-  //   },
-  // },
-  callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
-      // Console these to check necessary properites
-      console.log({ user, account, profile, email, credentials })
-      // if (account) {
-      //   const { providerAccountId, provider } = account;
-      //   const { email: user_email, image, name } = user;
-      //   const userCollection = dbConnect(collectionNamesObj.userCollection);
-      //   const isExisted = await userCollection.findOne({ providerAccountId });
-      //   if (!isExisted) {
-      //     const payload = {
-      //       providerAccountId,
-      //       provider,
-      //       email: user_email,
-      //       image,
-      //       name,
-      //     };
-      //     await userCollection.insertOne(payload);
-      //   }
-      // }
-      return true;
-    },
-  },
   pages: {
     signIn: "/login",
+    error: "/not-found",
   },
-  secret: process.env.NEXTAUTH_SECRET,
-};
 
+  callbacks: {
+    async jwt({ token, account, user }) {
+      if (account?.provider) {
+        token.provider = account.provider;
+      }
+
+      if (user) {
+        token.id = user._id || user.id;
+        token.name = user.name;
+        token.email = user.email;
+        token.userType = user.userType;
+      }
+
+      return token;
+    },
+    async session({ session, token }) {
+      session.provider = token.provider;
+
+      session.user = {
+        id: token.id,
+        name: token.name,
+        email: token.email,
+        userType: token.userType,
+      };
+
+      return session;
+    },
+  },
+};
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
