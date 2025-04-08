@@ -8,7 +8,7 @@ import { FiAlignRight } from "react-icons/fi";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session, status } = useSession();
-  console.log("navbar: ",session);
+  console.log("navbar:",session);
   return (
     <div>
       <nav className="bg-white shadow-md sticky top-0 z-50">
