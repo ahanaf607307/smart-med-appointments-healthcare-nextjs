@@ -17,7 +17,7 @@ export const authOptions = {
 
         try {
           const res = await fetch(
-            `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/getUser`,
+            `${process.env.NEXT_PUBLIC_BASE_URL}/api/getUser`,
             {
               // Use absolute URL
               method: "POST",
@@ -51,7 +51,7 @@ export const authOptions = {
 
   callbacks: {
     async jwt({ token, account, user }) {
-      console.log("user in jwt", user); 
+      console.log("user in jwt", user);
       if (account?.provider) {
         token.provider = account.provider;
       }
