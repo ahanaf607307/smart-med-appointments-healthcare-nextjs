@@ -15,7 +15,7 @@ export default function LoginForm() {
     const password = form.password.value;
 
     // Fetching corresponding user
-    const res = await fetch("/api/getUser", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getUser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

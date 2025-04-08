@@ -17,7 +17,7 @@ export const authOptions = {
 
         try {
           const res = await fetch(
-            `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/getUser`,
+            `${process.env.NEXT_PUBLIC_BASE_URL}/api/getUser`,
             {
               // Use absolute URL
               method: "POST",
@@ -51,13 +51,14 @@ export const authOptions = {
 
   callbacks: {
     async jwt({ token, account, user }) {
+      console.log("user in jwt", user);
       if (account?.provider) {
         token.provider = account.provider;
       }
 
       if (user) {
         token.id = user._id || user.id;
-        token.name = user.name;
+        token.displayName = user.displayName;
         token.email = user.email;
         token.userType = user.userType;
       }
@@ -69,7 +70,7 @@ export const authOptions = {
 
       session.user = {
         id: token.id,
-        name: token.name,
+        displayName: token.displayName,
         email: token.email,
         userType: token.userType,
       };

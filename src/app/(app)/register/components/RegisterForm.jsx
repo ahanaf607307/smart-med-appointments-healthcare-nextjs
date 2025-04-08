@@ -8,48 +8,7 @@ import { FaGoogle } from "react-icons/fa6";
 
 export default function RegisterForm() {
   const router = useRouter();
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const form = e.target;
-  //   const name = form.name.value;
-  //   const email = form.email.value;
-  //   const password = form.password.value;
-  //   // await registerUser({ name, email, password });
 
-  //   try {
-  //     // console.log(name, email, password);
-  //     const response = await signIn("credentials", {
-  //       email,
-  //       password,
-  //       callbackUrl: "/",
-  //       redirect: false,
-  //     });
-  //     if (response.ok) {
-  //       toast.success("Logged In successfully");
-  //       // Storing user in db
-  //       await fetch("/api/saveUser", {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           email,
-  //           password,
-  //           displayName: name,
-  //           userType: "general",
-  //         }),
-  //       });
-
-  //       router.push("/");
-  //       form.reset();
-  //     } else {
-  //       toast.error("FAILED to Log In");
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //     toast.error("FAILED to Log In");
-  //   }
-  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -60,16 +19,19 @@ export default function RegisterForm() {
 
     try {
       // 1. Register the user in your database
-      const res = await fetch("/api/saveUser", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          password,
-          displayName: name,
-          userType: "general",
-        }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/saveUser`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email,
+            password,
+            displayName: name,
+            userType: "general",
+          }),
+        }
+      );
 
       const data = await res.json();
       console.log(data);
