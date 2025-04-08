@@ -6,6 +6,7 @@ import { FaCalendarAlt, FaClock, FaHospital, FaMapMarkerAlt, FaPhone, FaStar, Fa
 import { MdOutlineReviews } from 'react-icons/md';
 
 const page = ({ params }) => {
+    // console.log(params.id);
 
     const [isReviewModalOpen, setIsReviewModalOpen] = useState(false)
     const doctor = {

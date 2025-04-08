@@ -24,6 +24,9 @@ const Navbar = () => {
               <Link href="/all-blood-post" className="px-3 py-2 rounded-lg hover:bg-gray-100">
                 All Blood Post
               </Link>
+              <Link href="/top-doctors" className="px-3 py-2 rounded-lg hover:bg-gray-100">
+                All Doctors
+              </Link>
               <Link
                 href="/about"
                 className="px-3 py-2 rounded-lg hover:bg-gray-100"
