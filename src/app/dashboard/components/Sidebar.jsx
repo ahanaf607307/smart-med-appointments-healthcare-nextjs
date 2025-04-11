@@ -9,6 +9,7 @@ import {
   Users,
 } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Sidebar({
   isMobile,
@@ -85,6 +86,21 @@ export default function Sidebar({
       href: "/dashboard/doctor/completeAppointment",
     },
   ];
+
+  const [allUsers, setAllUsers] = useState([]);
+  useEffect(() => {
+    const getAllUsers = async () => {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/getAllUsers`
+      );
+      const users = await res.json();
+      setAllUsers(users);
+    };
+
+    getAllUsers();
+  }, []);
+
+  console.log(allUsers[0]);
 
   return (
     <div
