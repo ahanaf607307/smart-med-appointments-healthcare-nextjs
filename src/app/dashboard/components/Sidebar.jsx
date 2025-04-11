@@ -2,11 +2,15 @@
 import { Button } from "@/components/ui/button"
 import { Calendar, FileText, LayoutDashboard, LogOut, Settings, Users } from "lucide-react"
 import Link from "next/link"
-import { FaHandHoldingWater } from "react-icons/fa"
-import { FaSquarePlus, FaUserDoctor } from "react-icons/fa6"
-import { MdMedicalInformation } from "react-icons/md"
 
-export default function Sidebar({ isMobile, sidebarOpen, user, handleLogout }) {
+
+export default async function Sidebar({ isMobile, sidebarOpen, user, handleLogout }) {
+
+    
+const res = await fetch(`/api/getAllUsers`);
+const users = await res.json();
+console.log(users);
+
     const navItems = [
         { icon: <LayoutDashboard className="h-5 w-5" />, label: "Dashboard", href: "/dashboard" },
         { icon: <Users className="h-5 w-5" />, label: "Add Ambulance", href: "/dashboard/addAmbulance" },
