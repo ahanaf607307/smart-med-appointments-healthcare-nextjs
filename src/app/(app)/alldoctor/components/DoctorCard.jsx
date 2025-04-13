@@ -3,9 +3,9 @@ import { FaStar, FaStarHalf } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 
 const DoctorCard = ({ doctor }) => {
-    const { id, name, category, gender, imageLink, rating, experience } = doctor;
+    const { _id, name, category, gender, imageLink, rating, experience } = doctor;
     return (
-        <Link href={`/alldoctor/${id}`}>
+        <Link href={`/alldoctor/${_id}`}>
             <div className="border-2 p-2 rounded-2xl border-[#00BDE0] flex flex-col gap-1.5 hover:scale-100 group transition-all">
                 {/* Image */}
                 <div className="relative mb-3 overflow-hidden rounded-2xl transition-all">
