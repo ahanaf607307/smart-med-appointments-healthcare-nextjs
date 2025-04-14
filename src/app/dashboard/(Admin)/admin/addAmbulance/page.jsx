@@ -1,33 +1,47 @@
-"use client"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { useForm } from "react-hook-form"
+"use client";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
- function AddAmbulance() {
-    const {
-        register,
-        handleSubmit,
-        setValue,
-        formState: { errors },
-      } = useForm()
-      const onSubmit= (data) => {
+function AddAmbulance() {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const { mutateAsync } = useMutation({
+    mutationFn: async (ambulanceInfo) => {
+      await axios.post(`/api/addAmbulance`, ambulanceInfo);
+    },
+    onSuccess: () => {
+      toast.success("Ambulance added successfully!!");
+    },
+    onError: () => {
+      toast.error("Something went wrong");
+    },
+  });
 
-        const ambulanceName = data.ambulanceName
-        const ambulanceImage = data.ambulanceImage
-        const rentPrice = data.rentPrice
-        const location = data.location
-        const phoneNumber = data.phoneNumber
-        const doctorInfo = {
-            ambulanceName,
-            ambulanceImage,
-            rentPrice,
-            location,
-            phoneNumber,
-        }
-        console.log(doctorInfo)
-      }
+  const onSubmit = async (data) => {
+    try {
+      await mutateAsync(data);
+      reset();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Card className="w-full max-w-2xl mx-auto">
@@ -44,7 +58,6 @@ import { useForm } from "react-hook-form"
               name="ambulanceName"
               placeholder="Write Your Ambulance Name"
               {...register("ambulanceName")}
-
               required
             />
           </div>
@@ -55,7 +68,6 @@ import { useForm } from "react-hook-form"
               name="ambulanceImage"
               placeholder=" Ambulance Image"
               {...register("ambulanceImage")}
-
               required
             />
           </div>
@@ -66,7 +78,6 @@ import { useForm } from "react-hook-form"
               name="rentPrice"
               placeholder="Enter Rent Price"
               {...register("rentPrice")}
-
               required
             />
           </div>
@@ -77,7 +88,6 @@ import { useForm } from "react-hook-form"
               name="location"
               placeholder="Enter Ambulance Location "
               {...register("location")}
-
               required
             />
           </div>
@@ -88,20 +98,22 @@ import { useForm } from "react-hook-form"
               name="phoneNumber"
               placeholder="Enter Phone Number"
               {...register("phoneNumber")}
-
               required
             />
           </div>
         </CardContent>
-        <CardFooter >
-          <Button variant='outline' type="submit" className="w-full cursor-pointer mt-5 bg-cyan-400">
+        <CardFooter>
+          <Button
+            variant="outline"
+            type="submit"
+            className="w-full cursor-pointer mt-5 bg-cyan-400"
+          >
             Add
           </Button>
         </CardFooter>
       </form>
     </Card>
-  )
+  );
 }
-
 
 export default AddAmbulance;

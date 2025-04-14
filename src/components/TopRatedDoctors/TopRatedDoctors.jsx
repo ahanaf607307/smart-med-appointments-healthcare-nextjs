@@ -1,6 +1,5 @@
 'use client'
 
-import Link from "next/link";
 import { useState } from "react";
 import TopRatedDoctorsCard from "../TopRatedDoctorsCard/TopRatedDoctorsCard";
 
@@ -107,9 +106,7 @@ const TopRatedDoctors = () => {
 
                 {/* View All Button */}
                 <div className="flex flex-col justify-center items-center mt-8">
-                    <Link href='/top-doctors'>
-                        <button className="bg-[#00BDE0] text-white px-10 py-2 rounded-2xl border-2 border-[#00BDE0] cursor-pointer transition-all hover:bg-transparent hover:text-[#00BDE0] font-bold">View All</button>
-                    </Link>
+                    <button className="bg-[#00BDE0] text-white px-10 py-2 rounded-2xl border-2 border-[#00BDE0] cursor-pointer transition-all hover:bg-transparent hover:text-[#00BDE0] font-bold">View All</button>
                 </div>
                 {/* End of View all Button */}
             </div>

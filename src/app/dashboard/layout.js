@@ -8,6 +8,7 @@ import Sidebar from "./components/Sidebar"
 import MainContent from "./components/Maincontent"
 import { useMobile } from "../../../hooks/use-mobile"
 import "../globals.css"
+import { useSession } from "next-auth/react"
 
 export default function DashboardLayout({ children }) {
     const router = useRouter()
@@ -32,7 +33,8 @@ export default function DashboardLayout({ children }) {
         localStorage.removeItem("user")
         router.push("/")
     }
-
+    const { data: session, status } = useSession();
+    console.log(session);
     return (
         <div className="flex h-screen bg-gray-100">
             {/* Mobile sidebar toggle */}
@@ -43,10 +45,10 @@ export default function DashboardLayout({ children }) {
             </div>
 
             {/* Sidebar Component */}
-            <Sidebar isMobile={isMobile} sidebarOpen={sidebarOpen} user={user} handleLogout={handleLogout} />
+            <Sidebar isMobile={isMobile} session={session} sidebarOpen={sidebarOpen} user={user} handleLogout={handleLogout} />
 
             {/* Main Content Component */}
-            <MainContent user={user} handleLogout={handleLogout}>
+            <MainContent user={user} handleLogout={handleLogout} session={session}>
                 {children}
             </MainContent>
         </div>

@@ -1,42 +1,72 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useState, useEffect } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export function EditDoctorDialog({ doctor, open, onOpenChange, onSave }) {
-  const [formData, setFormData] = useState(doctor)
-  const isNewDoctor = !doctor.name
+  const [formData, setFormData] = useState(doctor);
+  const { mutateAsync } = useMutation({
+    mutationFn: async (newDoctor) => {
+      await axios.post(`/api/addDoctor`, newDoctor);
+    },
+    onSuccess: () => {
+      toast.success("Doctor added Successfully!!");
+    },
+    onError: (error) => {
+      toast.error(error.response.data.msg);
+    },
+  });
+  const isNewDoctor = !doctor.name;
 
   useEffect(() => {
-    setFormData(doctor)
-  }, [doctor])
+    setFormData(doctor);
+  }, [doctor]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleStatusChange = (value) => {
     setFormData((prev) => ({
       ...prev,
       status: value,
-    }))
-  }
+    }));
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    onSave(formData)
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    onSave(formData);
+
+    await mutateAsync(formData);
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
-          <DialogTitle>{isNewDoctor ? "Add New Doctor" : "Edit Doctor Information"}</DialogTitle>
+          <DialogTitle>
+            {isNewDoctor ? "Add New Doctor" : "Edit Doctor Information"}
+          </DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4 py-4">
@@ -110,7 +140,10 @@ export function EditDoctorDialog({ doctor, open, onOpenChange, onSave }) {
               <Label htmlFor="status" className="text-right">
                 Status
               </Label>
-              <Select value={formData.status} onValueChange={handleStatusChange}>
+              <Select
+                value={formData.status}
+                onValueChange={handleStatusChange}
+              >
                 <SelectTrigger className="col-span-3">
                   <SelectValue placeholder="Select status" />
                 </SelectTrigger>
@@ -123,14 +156,19 @@ export function EditDoctorDialog({ doctor, open, onOpenChange, onSave }) {
             </div>
           </div>
           <DialogFooter>
-            <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => onOpenChange(false)}
+            >
               Cancel
             </Button>
-            <Button type="submit">{isNewDoctor ? "Add Doctor" : "Save Changes"}</Button>
+            <Button type="submit">
+              {isNewDoctor ? "Add Doctor" : "Save Changes"}
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
-
