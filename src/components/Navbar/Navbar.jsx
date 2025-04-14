@@ -8,7 +8,7 @@ import { FiAlignRight } from "react-icons/fi";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session, status } = useSession();
-  console.log("navbar:",session);
+  console.log("navbar:", session);
   return (
     <div>
       <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -36,7 +36,7 @@ const Navbar = () => {
               >
                 AI
               </Link>
-              
+
               <Link
                 href="/contact"
                 className="px-3 py-2 rounded-lg hover:bg-gray-100"
@@ -55,6 +55,10 @@ const Navbar = () => {
               >
                 Ambulance Service
               </Link>
+              <Link
+                href="/profile"
+                className="px-3 py-2 rounded-lg hover:bg-gray-100"
+              >Profile</Link>
               <Link
                 href="/dashboard"
                 className="px-3 py-2 rounded-lg hover:bg-gray-100"
@@ -109,53 +113,53 @@ const Navbar = () => {
         {isOpen && (
           <div className="lg:hidden bg-white shadow-md flex flex-col">
             <Link href="/" className="px-3 py-2 rounded-lg hover:bg-gray-100">
-                Home
-              </Link>
-              <Link href="/all-blood-post" className="px-3 py-2 rounded-lg hover:bg-gray-100">
-                All Blood Post
-              </Link>
-              <Link
-                href="/about"
-                className="px-3 py-2 rounded-lg hover:bg-gray-100"
-              >
-                About
-              </Link>
-              <Link
-                href="/ask-med"
-                className="px-3 py-2 rounded-lg hover:bg-gray-100"
-              >
-                AI
-              </Link>
-              <Link
-                href="/dashboard"
-                className="px-3 py-2 rounded-lg hover:bg-gray-100"
-              >
-                Services
-              </Link>
-              <Link
-                href="/contact"
-                className="px-3 py-2 rounded-lg hover:bg-gray-100"
-              >
-                Contact
-              </Link>
-              <Link
-                href="/alldoctor"
-                className="px-3 py-2 rounded-lg hover:bg-gray-100"
-              >
-                Doctors
-              </Link>
-              <Link
-                href="/ambulance"
-                className="px-3 py-2 rounded-lg hover:bg-gray-100"
-              >
-                Ambulance Service
-              </Link>
-              <Link
-                href="/dashboard/user/add-blood-post"
-                className="px-3 py-2 rounded-lg hover:bg-gray-100"
-              >
-                Dashboard
-              </Link>
+              Home
+            </Link>
+            <Link href="/all-blood-post" className="px-3 py-2 rounded-lg hover:bg-gray-100">
+              All Blood Post
+            </Link>
+            <Link
+              href="/about"
+              className="px-3 py-2 rounded-lg hover:bg-gray-100"
+            >
+              About
+            </Link>
+            <Link
+              href="/ask-med"
+              className="px-3 py-2 rounded-lg hover:bg-gray-100"
+            >
+              AI
+            </Link>
+            <Link
+              href="/dashboard"
+              className="px-3 py-2 rounded-lg hover:bg-gray-100"
+            >
+              Services
+            </Link>
+            <Link
+              href="/contact"
+              className="px-3 py-2 rounded-lg hover:bg-gray-100"
+            >
+              Contact
+            </Link>
+            <Link
+              href="/alldoctor"
+              className="px-3 py-2 rounded-lg hover:bg-gray-100"
+            >
+              Doctors
+            </Link>
+            <Link
+              href="/ambulance"
+              className="px-3 py-2 rounded-lg hover:bg-gray-100"
+            >
+              Ambulance Service
+            </Link>
+            <Link
+              href="/dashboard/user/add-blood-post"
+              className="px-3 py-2 rounded-lg hover:bg-gray-100"
+            >
+              Dashboard
+            </Link>
           </div>
         )}
       </nav>
