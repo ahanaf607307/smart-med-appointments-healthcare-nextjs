@@ -91,7 +91,7 @@ export function Filter() {
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {
                     filteredDoctors?.map((doctor) =>
-                        <DoctorCard key={doctor.id} doctor={doctor} />
+                        <DoctorCard key={doctor._id} doctor={doctor} />
                     )
                 }
             </div>
