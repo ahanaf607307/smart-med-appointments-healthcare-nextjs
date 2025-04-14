@@ -22,7 +22,7 @@ export function Filter() {
     const { data: allDoctors = [] } = useQuery({
         queryKey: ["allDoctors", `${nameFilter}`],
         queryFn: async () => {
-            const res = await axios.get(`/api/getAllDoctors?query=${nameFilter}`);
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getAllDoctors?query=${nameFilter}`);
             return res.data;
         },
     });

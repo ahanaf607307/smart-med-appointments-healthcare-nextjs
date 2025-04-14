@@ -16,17 +16,17 @@ export async function middleware(request) {
     const { pathname } = request.nextUrl;
     const role = token.userType;
 
-    if (pathname.startsWith("/dashboard/admin") && role !== "admin") {
-      return NextResponse.redirect(new URL("/login", request.url));
-    }
+  //   if (pathname.startsWith("/dashboard/admin") && role !== "admin") {
+  //     return NextResponse.redirect(new URL("/login", request.url));
+  //   }
 
-  if (pathname.startsWith("/dashboard/user") && role !== "general") {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
+  // if (pathname.startsWith("/dashboard/user") && role !== "general") {
+  //   return NextResponse.redirect(new URL("/login", request.url));
+  // }
 
-    if (pathname.startsWith("/dashboard/doctor") && role !== "doctor") {
-      return NextResponse.redirect(new URL("/login", request.url));
-    }
+  //   if (pathname.startsWith("/dashboard/doctor") && role !== "doctor") {
+  //     return NextResponse.redirect(new URL("/login", request.url));
+  //   }
 
   return NextResponse.next();
 }
