@@ -11,7 +11,7 @@ export async function POST(req) {
       { email: loginInfo.email, password: loginInfo.password },
       "email displayName userType"
     ).exec();
-
+    console.log(user);
     if (user?.email && user?.userType) {
       return NextResponse.json({
         acknowledged: true,

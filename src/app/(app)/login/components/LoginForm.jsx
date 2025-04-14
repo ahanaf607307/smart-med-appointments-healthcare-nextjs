@@ -15,7 +15,7 @@ export default function LoginForm() {
     const password = form.password.value;
 
     // Fetching corresponding user
-    const res = await fetch("/api/getUser", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getUser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +28,6 @@ export default function LoginForm() {
 
     const data = await res.json();
     console.log("Response is: ", data);
-
 
     if (!data.acknowledged) {
       toast.error("User not found or incorrect credentials");
@@ -45,14 +44,17 @@ export default function LoginForm() {
 
       console.log(response);
       if (response.ok) {
-        toast.success("Logged in successfully");
+        toast.success("Logged In successfully");
         router.push("/");
         form.reset();
       } else {
+        toast.error("FAILED to Log In");
         toast.error("Failed to log in. Please try again.");
       }
+      console.log({ email, password });
     } catch (error) {
       console.log(error);
+      toast.error("FAILED to Log In");
       toast.error("An error occurred while logging in.");
     }
   };

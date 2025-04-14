@@ -8,7 +8,7 @@ import { FiAlignRight } from "react-icons/fi";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session, status } = useSession();
-  console.log(session);
+  // console.log("navbar:",session);
   return (
     <div>
       <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -36,12 +36,7 @@ const Navbar = () => {
               >
                 AI
               </Link>
-              <Link
-                href="/dashboard"
-                className="px-3 py-2 rounded-lg hover:bg-gray-100"
-              >
-                Services
-              </Link>
+              
               <Link
                 href="/contact"
                 className="px-3 py-2 rounded-lg hover:bg-gray-100"
@@ -61,7 +56,7 @@ const Navbar = () => {
                 Ambulance Service
               </Link>
               <Link
-                href="/dashboard/user/add-blood-post"
+                href="/dashboard"
                 className="px-3 py-2 rounded-lg hover:bg-gray-100"
               >
                 Dashboard

@@ -3,7 +3,7 @@ import AppointmentForm from "./components/Appointment-from";
 const page = ({ params }) => {
 
     const { id } = params
-    console.log(id);
+    // console.log(id);
 
 
     return (
