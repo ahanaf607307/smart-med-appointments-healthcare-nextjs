@@ -34,7 +34,6 @@ export default function DashboardLayout({ children }) {
         router.push("/")
     }
     const { data: session, status } = useSession();
-    console.log(session);
     return (
         <div className="flex h-screen bg-gray-100">
             {/* Mobile sidebar toggle */}

@@ -2,8 +2,9 @@ import AppointmentForm from "./components/Appointment-from";
 
 const page = ({ params }) => {
 
-    const { id } = params
-    console.log(id);
+    const { _id } = params
+    console.log(_id);
+
 
 
     return (
@@ -12,7 +13,7 @@ const page = ({ params }) => {
                 <h1 className="text-5xl font-bold mb-2 uppercase">Doctor <span className='text-[#00BDE0]'>Appointment</span></h1>
             </div>
             <div className="mb-10">
-                <AppointmentForm id={id}></AppointmentForm>
+                <AppointmentForm id={_id}></AppointmentForm>
             </div>
         </div>
     );
