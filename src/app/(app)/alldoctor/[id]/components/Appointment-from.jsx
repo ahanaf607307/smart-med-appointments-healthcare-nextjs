@@ -95,9 +95,6 @@ const departments = [
 export default function AppointmentForm({ id }) {
   console.log(id);
 
-<<<<<<< HEAD
-    // console.log(id)
-=======
   const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { data: session } = useSession();
@@ -116,7 +113,6 @@ export default function AppointmentForm({ id }) {
       isNewPatient: false,
     },
   });
->>>>>>> e501e7d6f0984ab345677cf48e13646a271c5073
 
   function onSubmit(values) {
     setIsSubmitting(true);
