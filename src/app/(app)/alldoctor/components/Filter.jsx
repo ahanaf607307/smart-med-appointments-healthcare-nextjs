@@ -28,7 +28,7 @@ export function Filter() {
     });
     const categories = Array.from(new Set(allDoctors.map((doctor) => doctor.category)))
 
-    console.log(allDoctors);
+    // console.log(allDoctors);
 
     // Filter doctors based on all filters
     const filteredDoctors = allDoctors.filter((doctor) => {

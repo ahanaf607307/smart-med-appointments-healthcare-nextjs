@@ -124,26 +124,7 @@ export default function Sidebar({
           </nav>
         </div>
 
-        {/* Sidebar footer */}
-        <div className="border-t p-4">
-          <div className="mb-2">
-            <p className="text-sm font-medium">
-              {session?.user?.displayName || "User"}
-            </p>
-            <p className="text-xs text-gray-500">
-              {session?.user?.email || "user@example.com"}
-            </p>
-          </div>
-          <Button
-            variant="outline"
-            className="w-full justify-start text-red-500 hover:bg-red-50 hover:text-red-600"
-            onClick={handleLogout}
-          >
-            <LogOut className="mr-2 h-4 w-4" />
-            Logout
-          </Button>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    )
 }
