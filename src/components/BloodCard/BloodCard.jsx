@@ -1,5 +1,5 @@
 "use client";
-import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
+
 import { useState } from "react";
 import {
   Droplet,
@@ -116,9 +116,6 @@ function BloodCard() {
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
-      
-   
-    
         <div className="flex items-center justify-between">
           <Badge className="px-4 py-1.5 bg-red-600 hover:bg-red-600 text-white text-lg font-bold">
             <Droplet className="mr-1 h-5 w-5 fill-white" />

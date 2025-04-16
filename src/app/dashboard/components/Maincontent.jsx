@@ -5,7 +5,7 @@ import { LogOut } from "lucide-react";
 import { getSession } from "next-auth/react";
 
 export default function MainContent({ children, user, handleLogout, session }) {
-    // console.log(session);
+    console.log(session);
   return (
     <div className="flex flex-1 flex-col overflow-hidden">
       
