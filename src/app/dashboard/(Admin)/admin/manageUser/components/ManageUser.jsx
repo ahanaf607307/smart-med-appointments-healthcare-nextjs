@@ -30,7 +30,16 @@ export function TableDemo() {
     getAllUsers();
   }, []);
 
-  console.log(allUsers);
+  const handleStatusChange = async (userId, newStatus) => {
+    await fetch(`/api/updateUserRole`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: userId, userType: newStatus }),
+    });
+  };
+
   return (
     <Table>
       <TableHeader>
@@ -48,14 +57,17 @@ export function TableDemo() {
             <TableCell>{invoice.email}</TableCell>
             <TableCell>{invoice.userType}</TableCell>
             <TableCell className={"flex justify-end"}>
-              <Select value={invoice.Status} onValueChange={invoice.setStatus}>
+              <Select
+                value={invoice.Status}
+                onValueChange={(val) => handleStatusChange(invoice._id, val)}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Status Update" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">Update</SelectItem>
-                  <SelectItem value="Doctor">Doctor</SelectItem>
-                  <SelectItem value="Admin">Admin</SelectItem>
+                  <SelectItem value="general">Update</SelectItem>
+                  <SelectItem value="doctor">Doctor</SelectItem>
+                  <SelectItem value="admin">Admin</SelectItem>
                 </SelectContent>
               </Select>
             </TableCell>
