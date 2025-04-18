@@ -7,7 +7,7 @@ export default function WhyChooseUs() {
     return (
         <div className="container mx-auto">
 
-            <div className=" bg-white px-5 md:px-10 lg:px-4 py-10 lg:h-screen gap-5">
+            <div className=" bg-white px-5 md:px-10 lg:px-4 py-10  gap-5">
                 {/* Heading */}
                 <div className="text-center">
                     <h1 className="text-4xl font-bold uppercase">Why <span className="text-[#00BDE0]">Choose Us</span></h1>
