@@ -23,6 +23,8 @@ import {
   Settings,
   ChevronDown,
 } from "lucide-react"
+import logoImage from '../../../public/assets/images/login/images.png'
+import Image from "next/image"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState({ menu: false, profile: false })
@@ -76,11 +78,9 @@ const Navbar = () => {
             {/* Logo */}
             <div className="flex items-center">
               <div className="relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg blur opacity-25"></div>
-                <div className="relative bg-white bg-opacity-90 px-3 py-1 rounded-lg">
-                  <span className="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-600">
-                    SMART<span className="text-rose-500">MED</span>
-                  </span>
+                <div className="absolute -inset-1 bg-gradient-to-r rounded-full"></div>
+                <div className="relative">
+                  <Link href='/'><Image src={logoImage} className="w-20 h-20 rounded-full" alt="logo"/></Link>
                 </div>
               </div>
             </div>
