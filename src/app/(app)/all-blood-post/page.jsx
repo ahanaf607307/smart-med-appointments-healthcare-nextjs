@@ -97,7 +97,7 @@ const page = () => {
         }
     });
 
-    // console.log(data);
+    console.log(data);
 
     if (isLoading) return <p>Loading....</p>
 

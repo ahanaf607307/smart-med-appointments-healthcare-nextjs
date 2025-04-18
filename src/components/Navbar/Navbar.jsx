@@ -31,7 +31,7 @@ const Navbar = () => {
   const status = session?.status || "unauthenticated"
   const userData = session?.data?.user
   const pathname = usePathname()
-console.log(session , "navbar session")
+// console.log("navbar session",session  )
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
@@ -165,7 +165,7 @@ console.log(session , "navbar session")
                             )}
                           </div>
                           <div>
-                            <p className="font-medium text-gray-900">{userData?.name || "User"}</p>
+                            <p className="font-medium text-gray-900">{userData?.displayName || "User"}</p>
                             <p className="text-sm text-gray-500 truncate">{userData?.email || ""}</p>
                           </div>
                         </div>
@@ -278,7 +278,7 @@ console.log(session , "navbar session")
                           )}
                         </div>
                         <div>
-                          <p className="font-medium text-gray-900">{userData?.name || "User"}</p>
+                          <p className="font-medium text-gray-900">{userData?.displayName || "User"}</p>
                           <p className="text-sm text-gray-500 truncate">{userData?.email || ""}</p>
                         </div>
                       </div>
