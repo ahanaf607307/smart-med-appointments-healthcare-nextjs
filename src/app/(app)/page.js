@@ -22,7 +22,7 @@ export default function Home() {
 
       {/* Top Rated Doctors */}
       <TopRatedDoctors />
-      <Ourteam></Ourteam>
+      {/* <Ourteam></Ourteam> */}
       <NewsLetter />
       <ReviewAndRating />
       <AddReview/>
