@@ -3,61 +3,66 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { FaGithub } from "react-icons/fa";
-import { FaGoogle } from "react-icons/fa6";
+import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
 
 export default function LoginForm() {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
+    e.preventDefault()
+    setIsLoading(true)
 
-    // Fetching corresponding user
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getUser`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
-
-    const data = await res.json();
-    console.log("Response is: ", data);
-
-    if (!data.acknowledged) {
-      toast.error("User not found or incorrect credentials");
-      return;
-    }
+    const form = e.target
+    const email = form.email.value
+    const password = form.password.value
 
     try {
+      // Fetching corresponding user
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getUser`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      })
+
+      const data = await res.json()
+
+      if (!data.acknowledged) {
+        toast.error("User not found or incorrect credentials")
+        setIsLoading(false)
+        return
+      }
+
       const response = await signIn("credentials", {
         email,
         password,
         callbackUrl: "/",
         redirect: false,
-      });
+      })
 
-      console.log(response);
-      if (response.ok) {
-        toast.success("Logged In successfully");
-        router.push("/");
-        form.reset();
+      if (response?.ok) {
+        toast.success("Logged in successfully")
+        router.push("/")
+        form.reset()
       } else {
-        toast.error("FAILED to Log In");
-        toast.error("Failed to log in. Please try again.");
+        toast.error("Failed to log in. Please try again.")
       }
-      console.log({ email, password });
     } catch (error) {
-      console.log(error);
-      toast.error("FAILED to Log In");
-      toast.error("An error occurred while logging in.");
+      console.error(error)
+      toast.error("An error occurred while logging in.")
+    } finally {
+      setIsLoading(false)
     }
-  };
+  }
+
 
   const handleSocialLogin = async (providerName) => {
     console.log("social login", providerName);
@@ -95,11 +100,22 @@ export default function LoginForm() {
             className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400"
           />
         </div>
-        <button className="btn w-full h-12 bg-blue-400 rounded-md text-white font-bold">
-          Login
-        </button>
+        <Button
+          type="submit"
+          className="w-full h-11 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-medium"
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Signing in...
+            </>
+          ) : (
+            "Sign In"
+          )}
+        </Button>
       </form>
-      <div className="mt-6 text-center">
+      {/* <div className="mt-6 text-center">
         <p className="text-sm text-gray-600">Or sign up with</p>
         <div className="flex justify-center mt-2 space-x-4">
           <button
@@ -115,7 +131,7 @@ export default function LoginForm() {
             <FaGithub />
           </button>
         </div>
-      </div>
+      </div> */}
 
       <p className="text-sm text-gray-600">
         New here?{" "}
