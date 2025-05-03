@@ -41,6 +41,7 @@ export function Filter() {
 
     return (
         <div className="space-y-6">
+            <h1 className="text-3xl font-bold mb-8 text-center">Our Specialists</h1>
             <div className="flex flex-col md:flex-row gap-4">
                 {/* Name filter */}
                 <div className="relative w-full">
