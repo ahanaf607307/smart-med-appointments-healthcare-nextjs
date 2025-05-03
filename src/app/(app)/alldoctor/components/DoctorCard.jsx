@@ -44,7 +44,7 @@ const DoctorCard = ({ doctor }) => {
             <div className="relative">
               <div className="w-28 h-28 rounded-full border-4 border-white overflow-hidden shadow-md">
                 <img
-                  src={imageLink || "/placeholder.svg?height=112&width=112"}
+                  src={imageLink || "/placeholderr.svg?height=112&width=112"}
                   alt={name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
