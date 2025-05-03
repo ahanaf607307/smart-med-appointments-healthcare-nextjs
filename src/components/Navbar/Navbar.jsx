@@ -1,76 +1,104 @@
-
-
-"use client"
-import { signOut, useSession } from "next-auth/react"
-import Link from "next/link"
-import { useState, useEffect } from "react"
-import { usePathname } from "next/navigation"
+"use client";
 import {
-  Menu,
-  X,
+  Ambulance,
+  ChevronDown,
   Heart,
   Home,
   Info,
-  Sparkles,
-  PhoneCall,
-  Stethoscope,
-  Ambulance,
   LayoutDashboard,
   LogIn,
-  UserPlus,
   LogOut,
+  Menu,
+  PhoneCall,
+  Sparkles,
+  Stethoscope,
   User,
-  Settings,
-  ChevronDown,
-} from "lucide-react"
-import logoImage from '../../../public/assets/images/login/images.png'
-import Image from "next/image"
+  UserPlus,
+  X,
+} from "lucide-react";
+import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import logoImage from "../../../public/assets/images/login/images.png";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState({ menu: false, profile: false })
-  const [scrolled, setScrolled] = useState(false)
-  const session = useSession()
-  const status = session?.status || "unauthenticated"
-  const userData = session?.data?.user
-  const pathname = usePathname()
-// console.log("navbar session",session  )
+  const [isOpen, setIsOpen] = useState({ menu: false, profile: false });
+  const [scrolled, setScrolled] = useState(false);
+  const session = useSession();
+  const status = session?.status || "unauthenticated";
+  const userData = session?.data?.user;
+  const pathname = usePathname();
+  // console.log("navbar session",session  )
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Handle click outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (isOpen.profile && !event.target.closest(".profile-dropdown-container")) {
-        setIsOpen((prev) => ({ ...prev, profile: false }))
+      if (
+        isOpen.profile &&
+        !event.target.closest(".profile-dropdown-container")
+      ) {
+        setIsOpen((prev) => ({ ...prev, profile: false }));
       }
-    }
+    };
 
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => document.removeEventListener("mousedown", handleClickOutside)
-  }, [isOpen.profile])
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen.profile]);
 
-  const navItems = [
+  const baseNavItems = [
     { name: "Home", path: "/", icon: <Home className="w-4 h-4" /> },
-    { name: "Blood Posts", path: "/all-blood-post", icon: <Heart className="w-4 h-4" /> },
+    {
+      name: "Blood Posts",
+      path: "/all-blood-post",
+      icon: <Heart className="w-4 h-4" />,
+    },
     { name: "About", path: "/about", icon: <Info className="w-4 h-4" /> },
     { name: "AI", path: "/ask-med", icon: <Sparkles className="w-4 h-4" /> },
-    { name: "Contact", path: "/contact", icon: <PhoneCall className="w-4 h-4" /> },
-    { name: "Doctors", path: "/alldoctor", icon: <Stethoscope className="w-4 h-4" /> },
-    { name: "Ambulance", path: "/ambulance", icon: <Ambulance className="w-4 h-4" /> },
-    { name: "Dashboard", path: "/dashboard", icon: <LayoutDashboard className="w-4 h-4" /> },
-  ]
+    {
+      name: "Contact",
+      path: "/contact",
+      icon: <PhoneCall className="w-4 h-4" />,
+    },
+    {
+      name: "Doctors",
+      path: "/alldoctor",
+      icon: <Stethoscope className="w-4 h-4" />,
+    },
+    {
+      name: "Ambulance",
+      path: "/ambulance",
+      icon: <Ambulance className="w-4 h-4" />,
+    },
+  ];
+  const navItems =
+    status === "authenticated"
+      ? [
+          ...baseNavItems,
+          {
+            name: "Dashboard",
+            path: "/dashboard",
+            icon: <LayoutDashboard className="w-4 h-4" />,
+          },
+        ]
+      : baseNavItems;
 
   return (
     <div className="relative z-50">
       <nav
         className={`sticky top-0 z-50 transition-all duration-300 ${
-          scrolled ? "bg-white/90 backdrop-blur-md shadow-lg" : "bg-gradient-to-r from-cyan-50 to-blue-50 shadow-md"
+          scrolled
+            ? "bg-white/90 backdrop-blur-md shadow-lg"
+            : "bg-gradient-to-r from-cyan-50 to-blue-50 shadow-md"
         }`}
       >
         <div className="container mx-auto px-4">
@@ -80,7 +108,13 @@ const Navbar = () => {
               <div className="relative">
                 <div className="absolute -inset-1 bg-gradient-to-r rounded-full"></div>
                 <div className="relative">
-                  <Link href='/'><Image src={logoImage} className="w-20 h-20 rounded-full" alt="logo"/></Link>
+                  <Link href="/">
+                    <Image
+                      src={logoImage}
+                      className="w-20 h-20 rounded-full"
+                      alt="logo"
+                    />
+                  </Link>
                 </div>
               </div>
             </div>
@@ -113,7 +147,12 @@ const Navbar = () => {
                 {status === "authenticated" ? (
                   <div className="relative profile-dropdown-container">
                     <button
-                      onClick={() => setIsOpen((prev) => ({ ...prev, profile: !prev.profile }))}
+                      onClick={() =>
+                        setIsOpen((prev) => ({
+                          ...prev,
+                          profile: !prev.profile,
+                        }))
+                      }
                       className="flex items-center gap-2 p-1 rounded-full hover:bg-blue-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-300"
                       aria-label="Open profile menu"
                     >
@@ -139,9 +178,13 @@ const Navbar = () => {
 
                       {/* User name and dropdown indicator */}
                       <div className="flex items-center gap-1">
-                        <span className="text-sm font-medium">{userData?.name?.split(" ")[0] || "User"}</span>
+                        <span className="text-sm font-medium">
+                          {userData?.name?.split(" ")[0] || "User"}
+                        </span>
                         <ChevronDown
-                          className={`w-4 h-4 transition-transform duration-200 ${isOpen.profile ? "rotate-180" : ""}`}
+                          className={`w-4 h-4 transition-transform duration-200 ${
+                            isOpen.profile ? "rotate-180" : ""
+                          }`}
                         />
                       </div>
                     </button>
@@ -165,8 +208,12 @@ const Navbar = () => {
                             )}
                           </div>
                           <div>
-                            <p className="font-medium text-gray-900">{userData?.displayName || "User"}</p>
-                            <p className="text-sm text-gray-500 truncate">{userData?.email || ""}</p>
+                            <p className="font-medium text-gray-900">
+                              {userData?.displayName || "User"}
+                            </p>
+                            <p className="text-sm text-gray-500 truncate">
+                              {userData?.email || ""}
+                            </p>
                           </div>
                         </div>
 
@@ -174,7 +221,9 @@ const Navbar = () => {
                         <div className="py-2">
                           <Link
                             href="/userProfile"
-                            onClick={() => setIsOpen((prev) => ({ ...prev, profile: false }))}
+                            onClick={() =>
+                              setIsOpen((prev) => ({ ...prev, profile: false }))
+                            }
                             className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
                           >
                             <User className="w-4 h-4" />
@@ -182,21 +231,25 @@ const Navbar = () => {
                           </Link>
                           <Link
                             href="/dashboard"
-                            onClick={() => setIsOpen((prev) => ({ ...prev, profile: false }))}
+                            onClick={() =>
+                              setIsOpen((prev) => ({ ...prev, profile: false }))
+                            }
                             className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
                           >
                             <LayoutDashboard className="w-4 h-4" />
                             Dashboard
                           </Link>
-                         
                         </div>
 
                         {/* Logout */}
                         <div className="py-2">
                           <button
                             onClick={() => {
-                              signOut()
-                              setIsOpen((prev) => ({ ...prev, profile: false }))
+                              signOut();
+                              setIsOpen((prev) => ({
+                                ...prev,
+                                profile: false,
+                              }));
                             }}
                             className="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50"
                           >
@@ -234,7 +287,9 @@ const Navbar = () => {
               {status === "authenticated" && (
                 <div className="relative profile-dropdown-container mr-2">
                   <button
-                    onClick={() => setIsOpen((prev) => ({ ...prev, profile: !prev.profile }))}
+                    onClick={() =>
+                      setIsOpen((prev) => ({ ...prev, profile: !prev.profile }))
+                    }
                     className="flex items-center justify-center p-1 rounded-full overflow-hidden focus:outline-none focus:ring-2 focus:ring-blue-300"
                     aria-label="Open profile menu"
                   >
@@ -278,8 +333,12 @@ const Navbar = () => {
                           )}
                         </div>
                         <div>
-                          <p className="font-medium text-gray-900">{userData?.displayName || "User"}</p>
-                          <p className="text-sm text-gray-500 truncate">{userData?.email || ""}</p>
+                          <p className="font-medium text-gray-900">
+                            {userData?.displayName || "User"}
+                          </p>
+                          <p className="text-sm text-gray-500 truncate">
+                            {userData?.email || ""}
+                          </p>
                         </div>
                       </div>
 
@@ -287,7 +346,9 @@ const Navbar = () => {
                       <div className="py-2">
                         <Link
                           href="/userProfile"
-                          onClick={() => setIsOpen((prev) => ({ ...prev, profile: false }))}
+                          onClick={() =>
+                            setIsOpen((prev) => ({ ...prev, profile: false }))
+                          }
                           className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
                         >
                           <User className="w-4 h-4" />
@@ -295,21 +356,22 @@ const Navbar = () => {
                         </Link>
                         <Link
                           href="/dashboard"
-                          onClick={() => setIsOpen((prev) => ({ ...prev, profile: false }))}
+                          onClick={() =>
+                            setIsOpen((prev) => ({ ...prev, profile: false }))
+                          }
                           className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
                         >
                           <LayoutDashboard className="w-4 h-4" />
                           Dashboard
                         </Link>
-                        
                       </div>
 
                       {/* Logout */}
                       <div className="py-2">
                         <button
                           onClick={() => {
-                            signOut()
-                            setIsOpen((prev) => ({ ...prev, profile: false }))
+                            signOut();
+                            setIsOpen((prev) => ({ ...prev, profile: false }));
                           }}
                           className="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50"
                         >
@@ -324,11 +386,17 @@ const Navbar = () => {
 
               {/* Mobile Menu Button */}
               <button
-                onClick={() => setIsOpen((prev) => ({ ...prev, menu: !prev.menu }))}
+                onClick={() =>
+                  setIsOpen((prev) => ({ ...prev, menu: !prev.menu }))
+                }
                 className="p-2 rounded-full bg-blue-50 hover:bg-blue-100 transition-all duration-200"
                 aria-label="Toggle menu"
               >
-                {isOpen.menu ? <X className="w-5 h-5 text-blue-600" /> : <Menu className="w-5 h-5 text-blue-600" />}
+                {isOpen.menu ? (
+                  <X className="w-5 h-5 text-blue-600" />
+                ) : (
+                  <Menu className="w-5 h-5 text-blue-600" />
+                )}
               </button>
             </div>
           </div>
@@ -347,13 +415,21 @@ const Navbar = () => {
                 <Link
                   key={item.name}
                   href={item.path}
-                  onClick={() => setIsOpen((prev) => ({ ...prev, menu: false }))}
+                  onClick={() =>
+                    setIsOpen((prev) => ({ ...prev, menu: false }))
+                  }
                   className={`
                     flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200
-                    ${pathname === item.path ? "bg-blue-50 text-blue-600 font-medium" : "hover:bg-gray-50"}
+                    ${
+                      pathname === item.path
+                        ? "bg-blue-50 text-blue-600 font-medium"
+                        : "hover:bg-gray-50"
+                    }
                   `}
                 >
-                  <div className="bg-blue-100 p-2 rounded-full">{item.icon}</div>
+                  <div className="bg-blue-100 p-2 rounded-full">
+                    {item.icon}
+                  </div>
                   <span>{item.name}</span>
                 </Link>
               ))}
@@ -364,7 +440,9 @@ const Navbar = () => {
               <div className="pt-3 space-y-2">
                 <Link
                   href="/login"
-                  onClick={() => setIsOpen((prev) => ({ ...prev, menu: false }))}
+                  onClick={() =>
+                    setIsOpen((prev) => ({ ...prev, menu: false }))
+                  }
                   className="flex items-center gap-3 px-4 py-3 rounded-lg border border-blue-200 text-blue-600 hover:bg-blue-50"
                 >
                   <div className="bg-blue-100 p-2 rounded-full">
@@ -375,7 +453,9 @@ const Navbar = () => {
 
                 <Link
                   href="/register"
-                  onClick={() => setIsOpen((prev) => ({ ...prev, menu: false }))}
+                  onClick={() =>
+                    setIsOpen((prev) => ({ ...prev, menu: false }))
+                  }
                   className="flex items-center gap-3 px-4 py-3 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 text-white"
                 >
                   <div className="bg-white bg-opacity-20 p-2 rounded-full">
@@ -406,7 +486,9 @@ const Navbar = () => {
                     </div>
                     <div>
                       <p className="font-medium">{userData?.name || "User"}</p>
-                      <p className="text-sm text-gray-500 truncate">{userData?.email || ""}</p>
+                      <p className="text-sm text-gray-500 truncate">
+                        {userData?.email || ""}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -416,9 +498,7 @@ const Navbar = () => {
         </div>
       </nav>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
-
-
+export default Navbar;
