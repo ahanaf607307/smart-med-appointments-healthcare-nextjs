@@ -11,7 +11,7 @@ const ReviewCard = () => {
               </h1>
               <div className="my-5">
                 <h1 className="font-semibold text-xl">
-                 Mr.Ahanaf Mubasshir
+                 Mr.Alena Johen
                 </h1>
               </div>
             </div>
