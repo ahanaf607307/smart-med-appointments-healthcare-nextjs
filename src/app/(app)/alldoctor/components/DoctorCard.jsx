@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link"
 import { FaStar, FaStarHalf, FaRegStar } from "react-icons/fa"
 import { FaUserDoctor } from "react-icons/fa6"
