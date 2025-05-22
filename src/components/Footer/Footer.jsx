@@ -2,14 +2,29 @@
 
 import { ChevronUp, ExternalLink, Heart, Mail, Phone, Send } from "lucide-react"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const Footer = () => {
   const [email, setEmail] = useState("")
   const [subscribed, setSubscribed] = useState(false)
   const [activeSection, setActiveSection] = useState(null)
+  const [isClient, setIsClient] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false)
 
-  // Dynamic data
+  useEffect(() => {
+    setIsClient(true)
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        setIsDesktop(window.innerWidth >= 768)
+      }
+
+      handleResize()
+      window.addEventListener("resize", handleResize)
+
+      return () => window.removeEventListener("resize", handleResize)
+    }
+  }, [])
+
   const currentYear = new Date().getFullYear()
   const services = [
     { name: "Cardiology", icon: "❤️" },
@@ -24,7 +39,6 @@ const Footer = () => {
     if (email) {
       setSubscribed(true)
       setEmail("")
-      // In a real app, you would send this to your API
       console.log("Subscribed:", email)
     }
   }
@@ -33,9 +47,13 @@ const Footer = () => {
     setActiveSection(activeSection === section ? null : section)
   }
 
+  const shouldShowSection = (section) => {
+    return activeSection === section || isDesktop
+  }
+
   return (
     <footer className="relative text-white">
-      {/* Wave SVG divider */}
+      {/* Wave Divider */}
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none transform translate-y-[-1px]">
         <svg
           className="relative block w-full h-[70px]"
@@ -53,13 +71,11 @@ const Footer = () => {
 
       <div className="bg-[#192f47] pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header section with animated gradient */}
+          {/* Header */}
           <div className="flex md:flex-row flex-col md:justify-between items-center">
-            <div className="flex items-center">
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent animate-gradient">
-                SmartMed
-              </h1>
-            </div>
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent animate-gradient">
+              SmartMed
+            </h1>
             <div className="flex gap-3 mt-6 md:mt-0">
               <Link href={"/about"}>
                 <button className="py-2.5 px-6 rounded-full border border-blue-400 hover:bg-blue-400 hover:text-white transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
@@ -76,32 +92,19 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Main footer content */}
+          {/* Main Footer Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            {/* Services section with collapsible mobile view */}
-            <div className="bg-[#1d3553] p-6 rounded-lg shadow-lg transform transition-all duration-300 hover:translate-y-[-10px]">
-              <div
-                className="flex justify-between items-center cursor-pointer md:cursor-default"
-                onClick={() => toggleSection("services")}
-              >
+            {/* Services */}
+            <div className="bg-[#1d3553] p-6 rounded-lg shadow-lg hover:translate-y-[-10px] transition-all duration-300">
+              <div className="flex justify-between items-center cursor-pointer md:cursor-default" onClick={() => toggleSection("services")}>
                 <h2 className="text-xl font-semibold text-blue-400">Our Services</h2>
-                <ChevronUp
-                  className={`w-5 h-5 md:hidden transition-transform duration-300 ${activeSection === "services" ? "rotate-180" : ""}`}
-                />
+                <ChevronUp className={`w-5 h-5 md:hidden transition-transform duration-300 ${activeSection === "services" ? "rotate-180" : ""}`} />
               </div>
-
-              <ul
-                className={`mt-4 space-y-3 ${activeSection === "services" || window.innerWidth >= 768 ? "block" : "hidden md:block"}`}
-              >
+              <ul className={`mt-4 space-y-3 ${shouldShowSection("services") ? "block" : "hidden md:block"}`}>
                 {services.map((service, index) => (
                   <li key={index} className="group">
-                    <Link
-                      href={"/"}
-                      className="flex items-center gap-2 hover:text-blue-400 transition-colors duration-300"
-                    >
-                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        {service.icon}
-                      </span>
+                    <Link href={"/"} className="flex items-center gap-2 hover:text-blue-400 transition-colors duration-300">
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">{service.icon}</span>
                       {service.name}
                       <span className="h-[1px] w-0 bg-blue-400 group-hover:w-12 transition-all duration-300 ml-1"></span>
                     </Link>
@@ -110,27 +113,16 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Useful Links section */}
-            <div className="bg-[#1d3553] p-6 rounded-lg shadow-lg transform transition-all duration-300 hover:translate-y-[-10px]">
-              <div
-                className="flex justify-between items-center cursor-pointer md:cursor-default"
-                onClick={() => toggleSection("links")}
-              >
+            {/* Useful Links */}
+            <div className="bg-[#1d3553] p-6 rounded-lg shadow-lg hover:translate-y-[-10px] transition-all duration-300">
+              <div className="flex justify-between items-center cursor-pointer md:cursor-default" onClick={() => toggleSection("links")}>
                 <h2 className="text-xl font-semibold text-blue-400">Useful Links</h2>
-                <ChevronUp
-                  className={`w-5 h-5 md:hidden transition-transform duration-300 ${activeSection === "links" ? "rotate-180" : ""}`}
-                />
+                <ChevronUp className={`w-5 h-5 md:hidden transition-transform duration-300 ${activeSection === "links" ? "rotate-180" : ""}`} />
               </div>
-
-              <ul
-                className={`mt-4 space-y-3 ${activeSection === "links" || window.innerWidth >= 768 ? "block" : "hidden md:block"}`}
-              >
+              <ul className={`mt-4 space-y-3 ${shouldShowSection("links") ? "block" : "hidden md:block"}`}>
                 {["Home", "About", "Services", "Contact"].map((link, index) => (
                   <li key={index} className="overflow-hidden">
-                    <Link
-                      href={link === "Home" ? "/" : `/${link.toLowerCase()}`}
-                      className="relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-blue-400 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left"
-                    >
+                    <Link href={link === "Home" ? "/" : `/${link.toLowerCase()}`} className="relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-blue-400 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
                       {link}
                     </Link>
                   </li>
@@ -138,21 +130,13 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Contact section with newsletter */}
-            <div className="bg-[#1d3553] p-6 rounded-lg shadow-lg transform transition-all duration-300 hover:translate-y-[-10px]">
-              <div
-                className="flex justify-between items-center cursor-pointer md:cursor-default"
-                onClick={() => toggleSection("contact")}
-              >
+            {/* Contact */}
+            <div className="bg-[#1d3553] p-6 rounded-lg shadow-lg hover:translate-y-[-10px] transition-all duration-300">
+              <div className="flex justify-between items-center cursor-pointer md:cursor-default" onClick={() => toggleSection("contact")}>
                 <h2 className="text-xl font-semibold text-blue-400">Get In Touch</h2>
-                <ChevronUp
-                  className={`w-5 h-5 md:hidden transition-transform duration-300 ${activeSection === "contact" ? "rotate-180" : ""}`}
-                />
+                <ChevronUp className={`w-5 h-5 md:hidden transition-transform duration-300 ${activeSection === "contact" ? "rotate-180" : ""}`} />
               </div>
-
-              <div
-                className={`mt-4 space-y-4 ${activeSection === "contact" || window.innerWidth >= 768 ? "block" : "hidden md:block"}`}
-              >
+              <div className={`mt-4 space-y-4 ${shouldShowSection("contact") ? "block" : "hidden md:block"}`}>
                 <div className="flex items-center gap-3">
                   <Phone className="text-blue-400 w-5 h-5" />
                   <div>
@@ -183,10 +167,7 @@ const Footer = () => {
                         className="bg-[#15253d] text-white px-3 py-2 rounded-l-md focus:outline-none focus:ring-1 focus:ring-blue-400 w-full"
                         required
                       />
-                      <button
-                        type="submit"
-                        className="bg-blue-400 hover:bg-blue-500 text-white p-2 rounded-r-md transition-colors duration-300"
-                      >
+                      <button type="submit" className="bg-blue-400 hover:bg-blue-500 text-white p-2 rounded-r-md transition-colors duration-300">
                         <Send className="w-5 h-5" />
                       </button>
                     </form>
@@ -196,33 +177,32 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Footer bottom */}
+          {/* Bottom Footer */}
           <div className="mt-12 pt-6 border-t border-gray-700">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4 pb-8">
-              <p className="text-sm text-gray-300">
-                © {currentYear} HelthCARE. All Rights Reserved
-                {/* Dynamic copyright year using JSX expression */}
-              </p>
-
+              <p className="text-sm text-gray-300">© {currentYear} HelthCARE. All Rights Reserved</p>
               <div className="flex items-center gap-2">
                 <p className="text-sm text-gray-300">Made with</p>
                 <Heart className="text-red-500 w-4 h-4 animate-pulse" />
                 <p className="text-sm text-gray-300">by</p>
-                <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                  HelthCARE
-                </span>
+                <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">HelthCARE</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Add custom styles for animations */}
       <style jsx>{`
         @keyframes gradient {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
         }
         .animate-gradient {
           background-size: 200% 200%;
