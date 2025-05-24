@@ -1,36 +1,39 @@
-import React from 'react';
-import { FaStar, FaUserCircle } from 'react-icons/fa';
+import { Star, User } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
 
-const ReviewCard = () => {
-    return (
-        <div>
-             <div className="card w-80 border-2 border-gray-200 rounded-xl p-3">
-            <div className="flex gap-x-3 items-center">
-              <h1 className="text-3xl">
-                <FaUserCircle />
-              </h1>
-              <div className="my-5">
-                <h1 className="font-semibold text-xl">
-                 Mr.Alena Johen
-                </h1>
-              </div>
-            </div>
-            <p className="text-sm text-gray-500 mb-5">
-            "I love how Study Today makes group study sessions more organized. The real-time feedback and grading system help improve learning efficiency. The website runs smoothly without any lag, and the UI is very intuitive. A must-try for students!" – Mr. Arosh Al Hasan
-            </p>
-            <hr />
-            <div className="flex gap-4 items-center text-sm mt-2">
-              <h1>Rating :</h1>{" "}
-              <section className="text-orange-400 flex gap-4">
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-              </section>
-            </div>
+const ReviewCard = ({ name, role, review, rating, avatar }) => {
+  const renderStars = (rating) => {
+    return Array.from({ length: 5 }, (_, index) => (
+      <Star
+        key={index}
+        className={`w-4 h-4 ${index < rating ? "fill-yellow-400 text-yellow-400" : "fill-gray-200 text-gray-200"}`}
+      />
+    ))
+  }
+
+  return (
+    <Card className="h-full bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 border-0">
+      <CardContent className="p-6">
+        <div className="flex items-center gap-3 mb-4">
+          
+          <div>
+            <h3 className="font-semibold text-lg text-gray-800">{name}</h3>
+            <p className="text-sm text-blue-600 font-medium">{role}</p>
           </div>
         </div>
-    );
-};
 
-export default ReviewCard;
+        <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-4">"{review}"</p>
+
+        <div className="border-t pt-4">
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-medium text-gray-700">Rating:</span>
+            <div className="flex gap-1">{renderStars(rating)}</div>
+            <span className="text-sm text-gray-500 ml-1">({rating}/5)</span>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
+
+export default ReviewCard
