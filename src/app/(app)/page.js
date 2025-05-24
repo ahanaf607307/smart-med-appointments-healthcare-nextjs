@@ -25,7 +25,7 @@ export default function Home() {
       {/* <Ourteam></Ourteam> */}
       <NewsLetter />
       <ReviewAndRating />
-      <AddReview/>
+      {/* <AddReview/> */}
     </div>
   );
 }
