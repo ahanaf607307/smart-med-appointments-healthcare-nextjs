@@ -47,6 +47,7 @@
     "react-markdown": "^10.1.0",
     "react-multi-carousel": "^2.8.5",
     "react-rating": "^2.0.5",
+    "remark-gfm": "^4.0.1",
     "shadcn-ui": "^0.9.5",
     "sharp": "^0.33.5",
     "sonner": "^2.0.2",
