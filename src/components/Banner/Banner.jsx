@@ -51,7 +51,7 @@ const Banner = () => {
         <div className="relative w-full max-w-[320px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[541px] mx-auto md:mx-0">
           <img
             className="w-full h-auto object-contain"
-            src="https://clinicmaster.wprdx.com/medical/wp-content/uploads/2024/08/img1.webp"
+            src="https://static.vecteezy.com/system/resources/previews/041/408/858/non_2x/ai-generated-a-smiling-doctor-with-glasses-and-a-white-lab-coat-isolated-on-transparent-background-free-png.png"
             alt="Medical professional"
           />
 
